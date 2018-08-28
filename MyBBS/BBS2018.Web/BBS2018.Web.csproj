@@ -112,6 +112,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -121,6 +123,115 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="Content\images\Login\bg-login.png" />
+    <Content Include="Content\plugins\jquery-1.9.0.js" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\animate.css" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\color.css" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\common.css" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\comp\Table.css" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\lib.css" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\reset.css" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui.css" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\Button.css" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\Checkbox.css" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\Color.css" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\Datalist.css" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\Date.css" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\Dialog.css" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\DropList.css" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\DropPanel.css" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\images\Button\loading-blue.png" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\images\Button\loading-primary.gif" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\images\Button\loading-success.gif" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\images\Button\loading-warning.gif" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\images\Button\loading-white.png" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\images\Button\loading.gif" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\images\Checkbox\checkbox.png" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\images\Checkbox\checked.svg" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\images\Date\date-prev.svg" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\images\Date\icon-arrow.png" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\images\Date\icon-arrow.svg" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\images\Date\icons-prev-next.png" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\images\Dialog\close.png" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\images\Dialog\close.svg" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\images\Dialog\closes.png" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\images\Dialog\remind.png" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\images\Dialog\remind.svg" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\images\Dialog\success.png" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\images\Dialog\success.svg" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\images\Dialog\warning.png" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\images\Dialog\warning.svg" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\images\DropList\icon-droplist-arrow.png" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\images\DropList\icon-droplist-arrow.svg" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\images\DropPanel\close.png" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\images\DropPanel\close.svg" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\images\Input\closes.png" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\images\Input\icon-close.svg" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\images\Input\icon-search%402x.png" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\images\Input\icon-search.png" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\images\Input\icon-search.svg" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\images\Input\icons-search.svg" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\images\Input\icon_search.png" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\images\LightTip\error.svg" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\images\LightTip\icon-lightip.png" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\images\LightTip\icon-lightip.svg" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\images\LightTip\success.svg" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\images\Loading\loading-blue-s.gif" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\images\Loading\loading-blue-s.png" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\images\Loading\loading-blue.gif" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\images\Loading\loading-blue.png" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\images\Loading\loading-white-s.gif" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\images\Loading\loading-white-s.png" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\images\Loading\loading-white.gif" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\images\Loading\loading-white.png" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\images\Pagination\icon-loading.gif" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\images\Pagination\icons-prev-next.png" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\images\Pagination\icons_prev_next.png" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\images\Pagination\page-prev.svg" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\images\Radio\radio.png" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\images\Select\icon-arrow.png" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\images\Select\icon-arrow.svg" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\images\Switch\switch.png" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\Input.css" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\Keyboard.css" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\LightTip.css" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\Loading.css" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\Pagination.css" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\Placeholder.css" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\Radio.css" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\Range.css" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\Select.css" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\Switch.css" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\Tab.css" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\Table.css" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\Textarea.css" />
+    <Content Include="Content\plugins\lulu\theme\peak\css\common\ui\Tips.css" />
+    <Content Include="Content\plugins\lulu\theme\peak\js\common\comp\Form.js" />
+    <Content Include="Content\plugins\lulu\theme\peak\js\common\comp\Table.js" />
+    <Content Include="Content\plugins\lulu\theme\peak\js\common\ui\Checkbox.js" />
+    <Content Include="Content\plugins\lulu\theme\peak\js\common\ui\Color.js" />
+    <Content Include="Content\plugins\lulu\theme\peak\js\common\ui\Datalist.js" />
+    <Content Include="Content\plugins\lulu\theme\peak\js\common\ui\DateTime.js" />
+    <Content Include="Content\plugins\lulu\theme\peak\js\common\ui\Dialog.js" />
+    <Content Include="Content\plugins\lulu\theme\peak\js\common\ui\Drop.js" />
+    <Content Include="Content\plugins\lulu\theme\peak\js\common\ui\DropList.js" />
+    <Content Include="Content\plugins\lulu\theme\peak\js\common\ui\DropPanel.js" />
+    <Content Include="Content\plugins\lulu\theme\peak\js\common\ui\Enhance.js" />
+    <Content Include="Content\plugins\lulu\theme\peak\js\common\ui\ErrorTip.js" />
+    <Content Include="Content\plugins\lulu\theme\peak\js\common\ui\Follow.js" />
+    <Content Include="Content\plugins\lulu\theme\peak\js\common\ui\Keyboard.js" />
+    <Content Include="Content\plugins\lulu\theme\peak\js\common\ui\LightTip.js" />
+    <Content Include="Content\plugins\lulu\theme\peak\js\common\ui\Loading.js" />
+    <Content Include="Content\plugins\lulu\theme\peak\js\common\ui\Pagination.js" />
+    <Content Include="Content\plugins\lulu\theme\peak\js\common\ui\Placeholder.js" />
+    <Content Include="Content\plugins\lulu\theme\peak\js\common\ui\Radio.js" />
+    <Content Include="Content\plugins\lulu\theme\peak\js\common\ui\Range.js" />
+    <Content Include="Content\plugins\lulu\theme\peak\js\common\ui\Select.js" />
+    <Content Include="Content\plugins\lulu\theme\peak\js\common\ui\Tab.js" />
+    <Content Include="Content\plugins\lulu\theme\peak\js\common\ui\Tips.js" />
+    <Content Include="Content\plugins\lulu\theme\peak\js\common\ui\Validate.js" />
+    <Content Include="Content\plugins\lulu\theme\peak\js\plugin\jquery.js" />
+    <Content Include="Content\plugins\lulu\theme\peak\js\plugin\sea.js" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -133,11 +244,31 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
+    <Folder Include="Content\css\" />
+    <Folder Include="Content\iconfont\" />
+    <Folder Include="Content\js\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BBS2018.Bussiness\BBS2018.Bussiness.csproj">
+      <Project>{d67efe9b-4dc3-459e-93fa-1c3d0cf5ee33}</Project>
+      <Name>BBS2018.Bussiness</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\Register.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_LayoutLogin.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

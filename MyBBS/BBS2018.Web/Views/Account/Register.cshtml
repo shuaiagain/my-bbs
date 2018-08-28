@@ -1,0 +1,98 @@
+﻿@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+@section header{
+    <style type="text/css">
+        .register {
+            position: absolute;
+            left: 36%;
+            top: 100px;
+        }
+
+        .register-wrapper {
+            width: 400px;
+            height: 300px;
+            background: #fff;
+        }
+
+            .register-wrapper .header {
+                height: 60px;
+                line-height: 60px;
+                text-align: center;
+                font-size: 16px;
+                font-weight: 700;
+            }
+
+            .register-wrapper .content {
+                text-align: center;
+            }
+
+                .register-wrapper .content .username, .password {
+                    display: inline-block;
+                    height: 40px;
+                    line-height: 40px;
+                    width: 220px;
+                    border: none;
+                    border-bottom: 1px solid #bbb;
+                    outline: none;
+                }
+
+            .register-wrapper .user-submit {
+                margin-top: 40px;
+            }
+
+            .register-wrapper .register-btn {
+                display: inline-block;
+                height: 38px;
+                line-height: 38px;
+                background: #0084ff;
+                width: 220px;
+                color:#fff;
+            }
+    </style>
+}
+<div class="register">
+
+    <div class="register-wrapper">
+        <div class="header">
+            <a>用户注册</a>
+        </div>
+        <div class="content">
+            <div class="user-name">
+                <input type="text" class="username" name="username" value="" autocomplete="off" placeholder="用户名称" />
+            </div>
+
+            <div class="user-pwd">
+                <input type="password" class="password" name="password" value="" autocomplete="off" placeholder="密码" />
+            </div>
+
+            <div class="user-submit">
+                <a class="register-btn">注册</a>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="login-wrapper">
+    </div>
+
+</div>
+
+@section footer{
+    <script type="text/javascript">
+        $(function () {
+
+
+            $('.register-btn').on('click', function () {
+
+                if ($.trim($('.username').val()) == '') {
+                    alert();
+                    return;
+                }
+            });
+
+        });
+    </script>
+}

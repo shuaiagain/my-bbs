@@ -1,0 +1,65 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="header">
+    <div class="header-bar">
+        <div class="bar-search">
+            <input class="search-key" value="" placeholder="输入问题" />
+            <a>提问</a>
+        </div>
+        <div class="bar-user">
+            <a class="user-logo">用户头像</a>
+            <a class="user-name">用户名称</a>
+        </div>
+    </div>
+</div>
+
+<div class="main">
+
+    <div class="main-header">
+        <div class="ask">
+            <a>提问</a>
+        </div>
+        <div class="answer">
+            <a>回答</a>
+        </div>
+    </div>
+
+    <div class="main-content">
+
+        <div class="content-item">
+            <div class="item-user">
+                <a class="user-headlogo">用户头像</a>
+                <a class="user-name">用户名</a>
+                <span class="user-intro">用户介绍</span>
+            </div>
+        </div>
+
+        <div class="content-ask">
+            <a class="ask-question">问题内容</a>
+        </div>
+
+        <div class="content-answer">
+            <a class="answer-detail"></a>
+        </div>
+
+        <div class="content-operate">
+            <div class="vote">
+                <a class="praise-icon">图标</a>
+                <a class="praise">赞同</a>
+                <a class="praise-num"></a>
+
+                <a class="tread-icon">踩图标</a>
+            </div>
+        </div>
+
+        <div class="content-comment">
+            <a class="comment-icon">评论图标</a>
+            <a class="comment-num">评论数量</a>
+            <span class="comment-text">条评论</span>
+        </div>
+
+    </div>
+</div>
