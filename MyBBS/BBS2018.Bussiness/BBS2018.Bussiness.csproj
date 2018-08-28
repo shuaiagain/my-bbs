@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D67EFE9B-4DC3-459E-93FA-1C3D0CF5EE33}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BBS2018.Bussiness</RootNamespace>
+    <AssemblyName>BBS2018.Bussiness</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Service\BBSAnswerService.cs" />
+    <Compile Include="Service\BBSBooKService.cs" />
+    <Compile Include="Service\BBSCommentService.cs" />
+    <Compile Include="Service\BBSPraiseTreadService.cs" />
+    <Compile Include="Service\BBSUserRoleService.cs" />
+    <Compile Include="Service\OperateLogService.cs" />
+    <Compile Include="Service\BBSUserService.cs" />
+    <Compile Include="Service\BBSRoleService.cs" />
+    <Compile Include="Service\BBSQuestionService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\BBSAnswerVM.cs" />
+    <Compile Include="ViewModel\BBSBookVM.cs" />
+    <Compile Include="ViewModel\BBSCommentVM.cs" />
+    <Compile Include="ViewModel\BBSPraiseTreadVM.cs" />
+    <Compile Include="ViewModel\BBSQuestionVM.cs" />
+    <Compile Include="ViewModel\BBSRoleVM.cs" />
+    <Compile Include="ViewModel\BBSUserRoleVM.cs" />
+    <Compile Include="ViewModel\BBSUserVM.cs" />
+    <Compile Include="ViewModel\OperateLogVM.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Query\" />
+    <Folder Include="Utils\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
