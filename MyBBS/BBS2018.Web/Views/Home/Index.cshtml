@@ -30,18 +30,36 @@
             line-height: 60px;
         }
 
-            .home-wrap .bar-search .search-key {
-                height: 28px;
-                width: 300px;
-                outline: none;
-                padding-left: 5px;
-            }
+        .home-wrap .bar-user .user-logo {
+            display: inline-block;
+            cursor: pointer;
+            width: 26px;
+            height: 26px;
+        }
+
+        .home-wrap .bar-user .logo-show {
+            width: 26px;
+            height: 26px;
+            vertical-align: middle;
+        }
+
+        .home-wrap .bar-user .user-name {
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .home-wrap .bar-search .search-key {
+            height: 28px;
+            width: 300px;
+            outline: none;
+            padding-left: 5px;
+        }
 
         .home-wrap .wrap-main {
             width: 100%;
             height: 100%;
             padding-top: 60px;
-            background:#f6f6f6;
+            background: #f6f6f6;
         }
 
             .home-wrap .wrap-main .main {
@@ -149,8 +167,10 @@
                     <a class="btn-search">提问</a>
                 </div>
                 <div class="bar-user floatR">
-                    <a class="user-logo">用户头像</a>
-                    <a class="user-name">用户名称</a>
+                    <a class="user-logo">
+                        <img class="logo-show" src="~/Content/images/Login/bg-login.png" />
+                    </a>
+                    <a class="user-name">demon</a>
                 </div>
             </div>
         </div>
