@@ -20,5 +20,21 @@ namespace BBS2018.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
+
+        public override void Init()
+        {
+            base.Init();
+            base.AuthorizeRequest += MvcApplication_AuthorizeRequest;
+        }
+
+        private void MvcApplication_AuthorizeRequest(object sender, EventArgs e)
+        {
+            MyFormPrincipal principal = MyFormsAuthentication.TryParsePrincipal(this.Context);
+
+            if (principal == null || principal.UserData == null) return;
+
+            this.Context.User = principal;
+        }
+
     }
 }

@@ -3,56 +3,6 @@
     Layout = "~/Views/Shared/_LayoutLogin.cshtml";
 }
 
-@section header{
-    <style type="text/css">
-        .register {
-            position: absolute;
-            left: 36%;
-            top: 100px;
-        }
-
-        .register-wrapper {
-            width: 400px;
-            height: 300px;
-            background: #fff;
-        }
-
-            .register-wrapper .header {
-                height: 60px;
-                line-height: 60px;
-                text-align: center;
-                font-size: 16px;
-                font-weight: 700;
-            }
-
-            .register-wrapper .content {
-                text-align: center;
-            }
-
-                .register-wrapper .content .username, .password {
-                    display: inline-block;
-                    height: 40px;
-                    line-height: 40px;
-                    width: 220px;
-                    border: none;
-                    border-bottom: 1px solid #bbb;
-                    outline: none;
-                }
-
-            .register-wrapper .user-submit {
-                margin-top: 40px;
-            }
-
-            .register-wrapper .register-btn {
-                display: inline-block;
-                height: 38px;
-                line-height: 38px;
-                background: #0084ff;
-                width: 220px;
-                color:#fff;
-            }
-    </style>
-}
 <div class="register">
 
     <div class="register-wrapper">
@@ -60,6 +10,10 @@
             <a>用户注册</a>
         </div>
         <div class="content">
+            <div class="content-tips">
+                <span class="tips-text"></span>
+            </div>
+
             <div class="user-name">
                 <input type="text" class="username" name="username" value="" autocomplete="off" placeholder="用户名称" />
             </div>
@@ -78,20 +32,58 @@
     <div class="login-wrapper">
     </div>
 
+    <input type="hidden" name="registerUrl" value="@(Url.Action("Register","Account"))" />
 </div>
 
 @section footer{
     <script type="text/javascript">
         $(function () {
+            //居中
+            $('.register').css('margin-left', $('.register').outerWidth() * (-0.5));
 
-
+            //注册
             $('.register-btn').on('click', function () {
 
-                if ($.trim($('.username').val()) == '') {
+                var username = $('.username').val();
+                var pwd = $('.password').val();
 
-                    alert('用户名称');
+                if ($.trim(username) == '') {
+
+                    $('.tips-text').text('用户名称不能为空');
+                    $('.tips-text').css('visibility', 'visible');
                     return;
                 }
+
+                if ($.trim(pwd) == '') {
+
+                    $('.tips-text').text('密码不能为空');
+                    $('.tips-text').css('visibility', 'visible');
+                    return;
+                }
+
+                var registerUrl = $('input[name="registerUrl"]').val();
+
+                $.ajax({
+                    type: 'post',
+                    url: registerUrl,
+                    data: JSON.stringify({ LoginName: username, Password: pwd }),
+                    contentType: 'application/json;charset=utf-8',
+                    success: function (data) {
+
+                        if (data.Code < 0) {
+                            $('.tips-text').text(data.Msg);
+                            $('.tips-text').css('visibility','visible');
+                            return false;
+                        }
+
+                        location.href = '/';
+                    }
+                });
+            });
+
+            $('.username,.password').on('focus', function () {
+                $('.tips-text').text('');
+                $('.tips-text').css('visibility', 'hidden');
             });
 
         });

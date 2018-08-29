@@ -1,0 +1,60 @@
+﻿
+.floatL {
+    float: left;
+}
+
+.floatR {
+    float: right;
+}
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0px;
+    visibility: hidden;
+    clear: left;
+}
+
+.clear {
+    zoom: 1;
+}
+
+textL {
+    text-align: left;
+}
+
+.textC {
+    text-align: center;
+}
+
+.textR {
+    text-align: right;
+}
+
+.ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.ellipsis-mu {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    /*word-wrap: break-word;*/
+    display: -webkit-box !important;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.btn-search {
+    display: inline-block;
+    height: 30px;
+    width: 60px;
+    line-height: 28px;
+    background:#0084ff;
+    color:#fff;
+    text-align:center;
+    font-size:14px;
+    cursor:pointer;
+}

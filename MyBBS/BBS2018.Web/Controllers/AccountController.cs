@@ -16,7 +16,7 @@ namespace BBS2018.Web.Controllers
         public ActionResult Register()
         {
             return View();
-        } 
+        }
         #endregion
 
         #region 用户注册
@@ -52,7 +52,10 @@ namespace BBS2018.Web.Controllers
                     });
                 }
 
+                user.InputTime = DateTime.Now;
                 user = userSV.Register(user);
+
+                MyFormsAuthentication.SetAuthCookie(user.LoginName, new MyFormsAuthentication() { UserID = user.ID, UserName = user.LoginName }, false);
 
                 return Json(new
                 {
@@ -60,14 +63,13 @@ namespace BBS2018.Web.Controllers
                     Msg = "注册成功",
                     Data = user
                 });
-
             }
             catch (Exception ex)
             {
                 LogHelper.WriteLog(ex.Message);
                 throw ex;
             }
-        } 
+        }
         #endregion
     }
 }
