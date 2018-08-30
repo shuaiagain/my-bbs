@@ -5,75 +5,23 @@
 
 @section header{
     <style type="text/css">
-        .home-wrap .wrap-head {
-            /*border-bottom: 1px solid #bbb;*/
-            background: #fff;
-            position: fixed;
-            top: 0;
+        .wrap-main {
             width: 100%;
-        }
-
-        .home-wrap .header {
-            width: 70%;
-            height: 60px;
-            margin: 0 auto;
-            /*position: relative;*/
-        }
-
-            .home-wrap .header .header-bar {
-                position: fixed;
-                width: inherit;
-            }
-
-        .home-wrap .bar-search, .bar-user {
-            height: 60px;
-            line-height: 60px;
-        }
-
-        .home-wrap .bar-user .user-logo {
-            display: inline-block;
-            cursor: pointer;
-            width: 26px;
-            height: 26px;
-        }
-
-        .home-wrap .bar-user .logo-show {
-            width: 26px;
-            height: 26px;
-            vertical-align: middle;
-        }
-
-        .home-wrap .bar-user .user-name {
-            cursor: pointer;
-            display: inline-block;
-        }
-
-        .home-wrap .bar-search .search-key {
-            height: 28px;
-            width: 300px;
-            outline: none;
-            padding-left: 5px;
-        }
-
-        .home-wrap .wrap-main {
-            width: 100%;
-            height: 100%;
             padding-top: 60px;
             background: #f6f6f6;
         }
 
-            .home-wrap .wrap-main .main {
+            .wrap-main .main {
                 width: 70%;
                 margin: 0 auto;
             }
 
-            .home-wrap .wrap-main .main-header {
-                /*border: 1px solid #bbb;*/
+            .wrap-main .main-header {
                 margin: 10px 0px;
                 background: #fff;
             }
 
-            .home-wrap .wrap-main .ask, .answer {
+            .wrap-main .ask, .answer {
                 margin-left: 10px;
                 margin-right: 40px;
                 height: 50px;
@@ -81,538 +29,424 @@
                 cursor: pointer;
             }
 
-                .home-wrap .wrap-main .ask:hover, .answer:hover {
+                .wrap-main .ask:hover, .answer:hover {
                     color: #0084ff;
                 }
 
-        .wrap-main .main-content .content-item {
-            background: #fff;
-            padding: 10px;
-            margin-bottom: 10px;
-        }
-
-            .wrap-main .main-content .content-item .user-headlogo {
-                display: inline-block;
-                cursor: pointer;
+            .wrap-main .main-content .content-item {
+                background: #fff;
+                padding: 10px;
+                margin-bottom: 10px;
             }
 
-            .wrap-main .main-content .content-item .headlogo-item {
-                height: 24px;
-                width: 24px;
-                vertical-align: top;
+                .wrap-main .main-content .content-item .user-headlogo {
+                    display: inline-block;
+                    cursor: pointer;
+                }
+
+                .wrap-main .main-content .content-item .headlogo-item {
+                    height: 24px;
+                    width: 24px;
+                    vertical-align: top;
+                }
+
+                .wrap-main .main-content .content-item .user-name {
+                    display: inline-block;
+                    margin-left: 5px;
+                    height: 24px;
+                    line-height: 22px;
+                    font-weight: 700;
+                    cursor: pointer;
+                }
+
+                .wrap-main .main-content .content-item .user-intro {
+                    display: inline-block;
+                    height: 24px;
+                    line-height: 22px;
+                    width: 650px;
+                    vertical-align: bottom;
+                    word-break: break-all;
+                }
+
+                .wrap-main .main-content .content-item .content-ask {
+                    margin: 12px 0px;
+                    font-weight: 700;
+                }
+
+                .wrap-main .main-content .content-item .ask-question:hover {
+                    color: #175199;
+                    cursor: pointer;
+                }
+
+                .wrap-main .main-content .content-item .words-summary {
+                    display: inline-block;
+                }
+
+                .wrap-main .main-content .content-item .words-click {
+                    display: inline-block;
+                    vertical-align: top;
+                }
+
+            .wrap-main .main-content .content-operate {
+                margin-top: 12px;
             }
 
-            .wrap-main .main-content .content-item .user-name {
-                display: inline-block;
-                margin-left: 5px;
-                height: 24px;
-                line-height: 22px;
-                font-weight: 700;
-                cursor: pointer;
-            }
+                .wrap-main .main-content .content-operate .vote {
+                    margin-right: 20px;
+                }
 
-            .wrap-main .main-content .content-item .user-intro {
-                display: inline-block;
-                height: 24px;
-                line-height: 22px;
-                width: 650px;
-                vertical-align: bottom;
-                word-break: break-all;
-            }
+                .wrap-main .main-content .content-operate .vote-praise, .vote-tread {
+                    display: inline-block;
+                    background: #e5f2ff;
+                    color: #0084ff;
+                    padding: 5px 10px;
+                    cursor: pointer;
+                }
 
-            .wrap-main .main-content .content-item .content-ask {
-                margin: 12px 0px;
-                font-weight: 700;
-            }
-
-            .wrap-main .main-content .content-item .words-summary {
-                display: inline-block;
-            }
-
-            .wrap-main .main-content .content-item .words-click {
-                display: inline-block;
-                vertical-align: top;
-            }
-
-        .wrap-main .main-content .content-operate {
-            margin-top: 12px;
-        }
-
-            .wrap-main .main-content .content-operate .vote {
-                margin-right: 20px;
-            }
-
-            .wrap-main .main-content .content-operate .vote-praise, .vote-tread {
-                display: inline-block;
-                background: #e5f2ff;
-                color: #0084ff;
-                padding: 5px 10px;
-                cursor: pointer;
-            }
-
-            .wrap-main .main-content .content-operate .comment-wrap {
-                display: inline-block;
-                padding: 5px 0px;
-                color: #8590a6;
-                cursor: pointer;
-            }
+                .wrap-main .main-content .content-operate .comment-wrap {
+                    display: inline-block;
+                    padding: 5px 0px;
+                    color: #8590a6;
+                    cursor: pointer;
+                }
     </style>
 }
-<div class="home-wrap">
-    <div class="wrap-head">
-        <div class="header">
-            <div class="header-bar">
-                <div class="bar-search floatL">
-                    <input class="search-key " value="" placeholder="输入问题" />
-                    <a class="btn-search">提问</a>
-                </div>
-                <div class="bar-user floatR">
-                    <a class="user-logo">
-                        <img class="logo-show" src="~/Content/images/Login/bg-login.png" />
-                    </a>
-                    <a class="user-name">demon</a>
-                </div>
+
+<div class="wrap-main">
+    <div class="main">
+
+        <div class="main-header clearfix">
+            <div class="ask floatL">
+                <a class="iconfont icon-question"></a>
+                <a class="question">提问</a>
+            </div>
+            <div class="answer floatL">
+                <a class="iconfont icon-answer"></a>
+                <a class="answer">回答</a>
             </div>
         </div>
-    </div>
 
-    <div class="wrap-main">
-        <div class="main">
+        <div class="main-content">
 
-            <div class="main-header clearfix">
-                <div class="ask floatL">
-                    <a class="iconfont icon-question"></a>
-                    <a>提问</a>
+            <div class="content-item">
+                <div class="item-user">
+                    <a class="user-headlogo"><img class="headlogo-item" src="~/Content/images/Login/bg-login.png" /></a>
+                    <a class="user-name">用户名</a>
+                    <div class="user-intro ellipsis" title="用户介绍">用户介绍</div>
                 </div>
-                <div class="answer floatL">
-                    <a class="iconfont icon-answer"></a>
-                    <a>回答</a>
+
+                <div class="content-ask">
+                    <a class="ask-question" target="_blank" href="@(Url.Action("QuestionDetail", "Question", new { questionId = 1 }))">你见过大牛真人吗？</a>
                 </div>
+
+                <div class="content-answer">
+                    <div class="answer-wrap clearfix">
+                        <div class="answer-pic floatL" style="display:none;">回答图片</div>
+                        <div class="answer-words floatL">
+                            <span class="words-summary ellipsis-mu">
+                                前1.6行前1.6行前1.6行前1.6行前1.6行前1.6行前1.6行前1.6行行前1.6行
+                                行前1.6行行前1.6行行前1.6行行前1.6行行前1.6行行前1.6行行前1.6行行前
+                                1.6行行前1.6行行前1.6行行前1.6行行前1.6行1.6行行前1.6行行前1.6行行前1.6行行前1.6行
+                                1.6行行前1.6行行前1.6行行前1.6行行前1.6行
+                                1.6行行前1.6行行前1.6行行前1.6行行前1.6行
+                                1.6行行前1.6行行前1.6行行前1.6行行前1.6行
+                                1.6行行前1.6行行前1.6行行前1.6行行前1.6行
+                                1.6行行前1.6行行前1.6行行前1.6行行前1.6行
+                            </span>
+                            <p class="words-all"></p>
+                            <a class="words-click">阅读全文</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-operate clearfix">
+                    <div class="vote floatL">
+                        <div class="vote-praise">
+                            <a class="iconfont icon-arrowup"></a>
+                            <a class="praise">赞同</a>
+                            <a class="praise-num">11</a>
+                        </div>
+                        <div class="vote-tread">
+                            <a class="iconfont icon-arrowdown"></a>
+                        </div>
+                    </div>
+                    <div class="content-comment floatL">
+                        <div class="comment-wrap">
+                            <a class="iconfont icon-comment"></a>
+                            <a class="comment-num">44</a>
+                            <span class="comment-text">条评论</span>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
-            <div class="main-content">
-
-                <div class="content-item">
-                    <div class="item-user">
-                        <a class="user-headlogo"><img class="headlogo-item" src="~/Content/images/Login/bg-login.png" /></a>
-                        <a class="user-name">用户名</a>
-                        <div class="user-intro ellipsis" title="用户介绍">用户介绍</div>
-                    </div>
-
-                    <div class="content-ask">
-                        <a class="ask-question">你见过大牛真人吗？</a>
-                    </div>
-
-                    <div class="content-answer">
-                        <div class="answer-wrap clearfix">
-                            <div class="answer-pic floatL" style="display:none;">回答图片</div>
-                            <div class="answer-words floatL">
-                                <span class="words-summary ellipsis-mu">
-                                    前1.6行前1.6行前1.6行前1.6行前1.6行前1.6行前1.6行前1.6行行前1.6行
-                                    行前1.6行行前1.6行行前1.6行行前1.6行行前1.6行行前1.6行行前1.6行行前
-                                    1.6行行前1.6行行前1.6行行前1.6行行前1.6行1.6行行前1.6行行前1.6行行前1.6行行前1.6行
-                                    1.6行行前1.6行行前1.6行行前1.6行行前1.6行
-                                    1.6行行前1.6行行前1.6行行前1.6行行前1.6行
-                                    1.6行行前1.6行行前1.6行行前1.6行行前1.6行
-                                    1.6行行前1.6行行前1.6行行前1.6行行前1.6行
-                                    1.6行行前1.6行行前1.6行行前1.6行行前1.6行
-                                </span>
-                                <p class="words-all"></p>
-                                <a class="words-click">阅读全文</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="content-operate clearfix">
-                        <div class="vote floatL">
-                            <div class="vote-praise">
-                                <a class="iconfont icon-arrowup"></a>
-                                <a class="praise">赞同</a>
-                                <a class="praise-num">11</a>
-                            </div>
-                            <div class="vote-tread">
-                                <a class="iconfont icon-arrowdown"></a>
-                            </div>
-                        </div>
-                        <div class="content-comment floatL">
-                            <div class="comment-wrap">
-                                <a class="iconfont icon-comment"></a>
-                                <a class="comment-num">44</a>
-                                <span class="comment-text">条评论</span>
-                            </div>
-                        </div>
-                    </div>
-
+            <div class="content-item">
+                <div class="item-user">
+                    <a class="user-headlogo"><img class="headlogo-item" src="~/Content/images/Login/bg-login.png" /></a>
+                    <a class="user-name">用户名</a>
+                    <div class="user-intro ellipsis" title="用户介绍">用户介绍</div>
                 </div>
 
-                <div class="content-item">
-                    <div class="item-user">
-                        <a class="user-headlogo"><img class="headlogo-item" src="~/Content/images/Login/bg-login.png" /></a>
-                        <a class="user-name">用户名</a>
-                        <div class="user-intro ellipsis" title="用户介绍">用户介绍</div>
-                    </div>
-
-                    <div class="content-ask">
-                        <a class="ask-question">你见过大牛真人吗？</a>
-                    </div>
-
-                    <div class="content-answer">
-                        <div class="answer-wrap clearfix">
-                            <div class="answer-pic floatL" style="display:none;">回答图片</div>
-                            <div class="answer-words floatL">
-                                <span class="words-summary ellipsis-mu">
-                                    前1.6行前1.6行前1.6行前1.6行前1.6行前1.6行前1.6行前1.6行行前1.6行
-                                    行前1.6行行前1.6行行前1.6行行前1.6行行前1.6行行前1.6行行前1.6行行前
-                                    1.6行行前1.6行行前1.6行行前1.6行行前1.6行1.6行行前1.6行行前1.6行行前1.6行行前1.6行
-                                    1.6行行前1.6行行前1.6行行前1.6行行前1.6行
-                                    1.6行行前1.6行行前1.6行行前1.6行行前1.6行
-                                    1.6行行前1.6行行前1.6行行前1.6行行前1.6行
-                                    1.6行行前1.6行行前1.6行行前1.6行行前1.6行
-                                    1.6行行前1.6行行前1.6行行前1.6行行前1.6行
-                                </span>
-                                <p class="words-all"></p>
-                                <a class="words-click">阅读全文</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="content-operate clearfix">
-                        <div class="vote floatL">
-                            <div class="vote-praise">
-                                <a class="iconfont icon-arrowup"></a>
-                                <a class="praise">赞同</a>
-                                <a class="praise-num">11</a>
-                            </div>
-                            <div class="vote-tread">
-                                <a class="iconfont icon-arrowdown"></a>
-                            </div>
-                        </div>
-                        <div class="content-comment floatL">
-                            <div class="comment-wrap">
-                                <a class="iconfont icon-comment"></a>
-                                <a class="comment-num">44</a>
-                                <span class="comment-text">条评论</span>
-                            </div>
-                        </div>
-                    </div>
-
+                <div class="content-ask">
+                    <a class="ask-question">你见过大牛真人吗？</a>
                 </div>
 
-                <div class="content-item">
-                    <div class="item-user">
-                        <a class="user-headlogo"><img class="headlogo-item" src="~/Content/images/Login/bg-login.png" /></a>
-                        <a class="user-name">用户名</a>
-                        <div class="user-intro ellipsis" title="用户介绍">用户介绍</div>
-                    </div>
-
-                    <div class="content-ask">
-                        <a class="ask-question">你见过真正的外星人吗？</a>
-                    </div>
-
-                    <div class="content-answer">
-                        <div class="answer-wrap clearfix">
-                            <div class="answer-pic floatL" style="display:none;">回答图片</div>
-                            <div class="answer-words floatL">
-                                <span class="words-summary ellipsis-mu">
-                                    前1.6行前1.6行前1.6行前1.6行前1.6行前1.6行前1.6行前1.6行行前1.6行
-                                </span>
-                                <p class="words-all"></p>
-                                <a class="words-click">阅读全文</a>
-                            </div>
+                <div class="content-answer">
+                    <div class="answer-wrap clearfix">
+                        <div class="answer-pic floatL" style="display:none;">回答图片</div>
+                        <div class="answer-words floatL">
+                            <span class="words-summary ellipsis-mu">
+                                前1.6行前1.6行前1.6行前1.6行前1.6行前1.6行前1.6行前1.6行行前1.6行
+                                行前1.6行行前1.6行行前1.6行行前1.6行行前1.6行行前1.6行行前1.6行行前
+                                1.6行行前1.6行行前1.6行行前1.6行行前1.6行1.6行行前1.6行行前1.6行行前1.6行行前1.6行
+                                1.6行行前1.6行行前1.6行行前1.6行行前1.6行
+                                1.6行行前1.6行行前1.6行行前1.6行行前1.6行
+                                1.6行行前1.6行行前1.6行行前1.6行行前1.6行
+                                1.6行行前1.6行行前1.6行行前1.6行行前1.6行
+                                1.6行行前1.6行行前1.6行行前1.6行行前1.6行
+                            </span>
+                            <p class="words-all"></p>
+                            <a class="words-click">阅读全文</a>
                         </div>
                     </div>
-
-                    <div class="content-operate clearfix">
-                        <div class="vote floatL">
-                            <div class="vote-praise">
-                                <a class="iconfont icon-arrowup"></a>
-                                <a class="praise">赞同</a>
-                                <a class="praise-num">11</a>
-                            </div>
-                            <div class="vote-tread">
-                                <a class="iconfont icon-arrowdown"></a>
-                            </div>
-                        </div>
-                        <div class="content-comment floatL">
-                            <div class="comment-wrap">
-                                <a class="iconfont icon-comment"></a>
-                                <a class="comment-num">44</a>
-                                <span class="comment-text">条评论</span>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
 
-                <div class="content-item">
-                    <div class="item-user">
-                        <a class="user-headlogo"><img class="headlogo-item" src="~/Content/images/Login/bg-login.png" /></a>
-                        <a class="user-name">用户名</a>
-                        <div class="user-intro ellipsis" title="用户介绍">用户介绍</div>
-                    </div>
-
-                    <div class="content-ask">
-                        <a class="ask-question">你见过大牛真人吗？</a>
-                    </div>
-
-                    <div class="content-answer">
-                        <div class="answer-wrap clearfix">
-                            <div class="answer-pic floatL" style="display:none;">回答图片</div>
-                            <div class="answer-words floatL">
-                                <span class="words-summary ellipsis-mu">
-                                    前1.6行前1.6行前1.6行前1.6行前1.6行前1.6行前1.6行前1.6行行前1.6行
-                                    行前1.6行行前1.6行行前1.6行行前1.6行行前1.6行行前1.6行行前1.6行行前
-                                    1.6行行前1.6行行前1.6行行前1.6行行前1.6行1.6行行前1.6行行前1.6行行前1.6行行前1.6行
-                                    1.6行行前1.6行行前1.6行行前1.6行行前1.6行
-                                    1.6行行前1.6行行前1.6行行前1.6行行前1.6行
-                                    1.6行行前1.6行行前1.6行行前1.6行行前1.6行
-                                    1.6行行前1.6行行前1.6行行前1.6行行前1.6行
-                                    1.6行行前1.6行行前1.6行行前1.6行行前1.6行
-                                </span>
-                                <p class="words-all"></p>
-                                <a class="words-click">阅读全文</a>
-                            </div>
+                <div class="content-operate clearfix">
+                    <div class="vote floatL">
+                        <div class="vote-praise">
+                            <a class="iconfont icon-arrowup"></a>
+                            <a class="praise">赞同</a>
+                            <a class="praise-num">11</a>
+                        </div>
+                        <div class="vote-tread">
+                            <a class="iconfont icon-arrowdown"></a>
                         </div>
                     </div>
-
-                    <div class="content-operate clearfix">
-                        <div class="vote floatL">
-                            <div class="vote-praise">
-                                <a class="iconfont icon-arrowup"></a>
-                                <a class="praise">赞同</a>
-                                <a class="praise-num">11</a>
-                            </div>
-                            <div class="vote-tread">
-                                <a class="iconfont icon-arrowdown"></a>
-                            </div>
-                        </div>
-                        <div class="content-comment floatL">
-                            <div class="comment-wrap">
-                                <a class="iconfont icon-comment"></a>
-                                <a class="comment-num">44</a>
-                                <span class="comment-text">条评论</span>
-                            </div>
+                    <div class="content-comment floatL">
+                        <div class="comment-wrap">
+                            <a class="iconfont icon-comment"></a>
+                            <a class="comment-num">44</a>
+                            <span class="comment-text">条评论</span>
                         </div>
                     </div>
-
                 </div>
-
-                <div class="content-item">
-                    <div class="item-user">
-                        <a class="user-headlogo"><img class="headlogo-item" src="~/Content/images/Login/bg-login.png" /></a>
-                        <a class="user-name">用户名</a>
-                        <div class="user-intro ellipsis" title="用户介绍">用户介绍</div>
-                    </div>
-
-                    <div class="content-ask">
-                        <a class="ask-question">你见过大牛真人吗？</a>
-                    </div>
-
-                    <div class="content-answer">
-                        <div class="answer-wrap clearfix">
-                            <div class="answer-pic floatL" style="display:none;">回答图片</div>
-                            <div class="answer-words floatL">
-                                <span class="words-summary ellipsis-mu">
-                                    前1.6行前1.6行前1.6行前1.6行前1.6行前1.6行前1.6行前1.6行行前1.6行
-                                    行前1.6行行前1.6行行前1.6行行前1.6行行前1.6行行前1.6行行前1.6行行前
-                                    1.6行行前1.6行行前1.6行行前1.6行行前1.6行1.6行行前1.6行行前1.6行行前1.6行行前1.6行
-                                    1.6行行前1.6行行前1.6行行前1.6行行前1.6行
-                                    1.6行行前1.6行行前1.6行行前1.6行行前1.6行
-                                    1.6行行前1.6行行前1.6行行前1.6行行前1.6行
-                                    1.6行行前1.6行行前1.6行行前1.6行行前1.6行
-                                    1.6行行前1.6行行前1.6行行前1.6行行前1.6行
-                                </span>
-                                <p class="words-all"></p>
-                                <a class="words-click">阅读全文</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="content-operate clearfix">
-                        <div class="vote floatL">
-                            <div class="vote-praise">
-                                <a class="iconfont icon-arrowup"></a>
-                                <a class="praise">赞同</a>
-                                <a class="praise-num">11</a>
-                            </div>
-                            <div class="vote-tread">
-                                <a class="iconfont icon-arrowdown"></a>
-                            </div>
-                        </div>
-                        <div class="content-comment floatL">
-                            <div class="comment-wrap">
-                                <a class="iconfont icon-comment"></a>
-                                <a class="comment-num">44</a>
-                                <span class="comment-text">条评论</span>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="content-item">
-                    <div class="item-user">
-                        <a class="user-headlogo"><img class="headlogo-item" src="~/Content/images/Login/bg-login.png" /></a>
-                        <a class="user-name">用户名</a>
-                        <div class="user-intro ellipsis" title="用户介绍">用户介绍</div>
-                    </div>
-
-                    <div class="content-ask">
-                        <a class="ask-question">你见过大牛真人吗？</a>
-                    </div>
-
-                    <div class="content-answer">
-                        <div class="answer-wrap clearfix">
-                            <div class="answer-pic floatL" style="display:none;">回答图片</div>
-                            <div class="answer-words floatL">
-                                <span class="words-summary ellipsis-mu">
-                                    前1.6行前1.6行前1.6行前1.6行前1.6行前1.6行前1.6行前1.6行行前1.6行
-                                    行前1.6行行前1.6行行前1.6行行前1.6行行前1.6行行前1.6行行前1.6行行前
-                                    1.6行行前1.6行行前1.6行行前1.6行行前1.6行1.6行行前1.6行行前1.6行行前1.6行行前1.6行
-                                    1.6行行前1.6行行前1.6行行前1.6行行前1.6行
-                                    1.6行行前1.6行行前1.6行行前1.6行行前1.6行
-                                    1.6行行前1.6行行前1.6行行前1.6行行前1.6行
-                                    1.6行行前1.6行行前1.6行行前1.6行行前1.6行
-                                    1.6行行前1.6行行前1.6行行前1.6行行前1.6行
-                                </span>
-                                <p class="words-all"></p>
-                                <a class="words-click">阅读全文</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="content-operate clearfix">
-                        <div class="vote floatL">
-                            <div class="vote-praise">
-                                <a class="iconfont icon-arrowup"></a>
-                                <a class="praise">赞同</a>
-                                <a class="praise-num">11</a>
-                            </div>
-                            <div class="vote-tread">
-                                <a class="iconfont icon-arrowdown"></a>
-                            </div>
-                        </div>
-                        <div class="content-comment floatL">
-                            <div class="comment-wrap">
-                                <a class="iconfont icon-comment"></a>
-                                <a class="comment-num">44</a>
-                                <span class="comment-text">条评论</span>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-
-                <div class="content-item">
-                    <div class="item-user">
-                        <a class="user-headlogo"><img class="headlogo-item" src="~/Content/images/Login/bg-login.png" /></a>
-                        <a class="user-name">用户名</a>
-                        <div class="user-intro ellipsis" title="用户介绍">用户介绍</div>
-                    </div>
-
-                    <div class="content-ask">
-                        <a class="ask-question">你见过大牛真人吗？</a>
-                    </div>
-
-                    <div class="content-answer">
-                        <div class="answer-wrap clearfix">
-                            <div class="answer-pic floatL" style="display:none;">回答图片</div>
-                            <div class="answer-words floatL">
-                                <span class="words-summary ellipsis-mu">
-                                    前1.6行前1.6行前1.6行前1.6行前1.6行前1.6行前1.6行前1.6行行前1.6行
-                                    行前1.6行行前1.6行行前1.6行行前1.6行行前1.6行行前1.6行行前1.6行行前
-                                    1.6行行前1.6行行前1.6行行前1.6行行前1.6行1.6行行前1.6行行前1.6行行前1.6行行前1.6行
-                                    1.6行行前1.6行行前1.6行行前1.6行行前1.6行
-                                    1.6行行前1.6行行前1.6行行前1.6行行前1.6行
-                                    1.6行行前1.6行行前1.6行行前1.6行行前1.6行
-                                    1.6行行前1.6行行前1.6行行前1.6行行前1.6行
-                                    1.6行行前1.6行行前1.6行行前1.6行行前1.6行
-                                </span>
-                                <p class="words-all"></p>
-                                <a class="words-click">阅读全文</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="content-operate clearfix">
-                        <div class="vote floatL">
-                            <div class="vote-praise">
-                                <a class="iconfont icon-arrowup"></a>
-                                <a class="praise">赞同</a>
-                                <a class="praise-num">11</a>
-                            </div>
-                            <div class="vote-tread">
-                                <a class="iconfont icon-arrowdown"></a>
-                            </div>
-                        </div>
-                        <div class="content-comment floatL">
-                            <div class="comment-wrap">
-                                <a class="iconfont icon-comment"></a>
-                                <a class="comment-num">44</a>
-                                <span class="comment-text">条评论</span>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="content-item">
-                    <div class="item-user">
-                        <a class="user-headlogo"><img class="headlogo-item" src="~/Content/images/Login/bg-login.png" /></a>
-                        <a class="user-name">用户名</a>
-                        <div class="user-intro ellipsis" title="用户介绍">用户介绍</div>
-                    </div>
-
-                    <div class="content-ask">
-                        <a class="ask-question">你见过大牛真人吗？</a>
-                    </div>
-
-                    <div class="content-answer">
-                        <div class="answer-wrap clearfix">
-                            <div class="answer-pic floatL" style="display:none;">回答图片</div>
-                            <div class="answer-words floatL">
-                                <span class="words-summary ellipsis-mu">
-                                    前1.6行前1.6行前1.6行前1.6行前1.6行前1.6行前1.6行前1.6行行前1.6行
-                                    行前1.6行行前1.6行行前1.6行行前1.6行行前1.6行行前1.6行行前1.6行行前
-                                    1.6行行前1.6行行前1.6行行前1.6行行前1.6行1.6行行前1.6行行前1.6行行前1.6行行前1.6行
-                                    1.6行行前1.6行行前1.6行行前1.6行行前1.6行
-                                    1.6行行前1.6行行前1.6行行前1.6行行前1.6行
-                                    1.6行行前1.6行行前1.6行行前1.6行行前1.6行
-                                    1.6行行前1.6行行前1.6行行前1.6行行前1.6行
-                                    1.6行行前1.6行行前1.6行行前1.6行行前1.6行
-                                </span>
-                                <p class="words-all"></p>
-                                <a class="words-click">阅读全文</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="content-operate clearfix">
-                        <div class="vote floatL">
-                            <div class="vote-praise">
-                                <a class="iconfont icon-arrowup"></a>
-                                <a class="praise">赞同</a>
-                                <a class="praise-num">11</a>
-                            </div>
-                            <div class="vote-tread">
-                                <a class="iconfont icon-arrowdown"></a>
-                            </div>
-                        </div>
-                        <div class="content-comment floatL">
-                            <div class="comment-wrap">
-                                <a class="iconfont icon-comment"></a>
-                                <a class="comment-num">44</a>
-                                <span class="comment-text">条评论</span>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
 
             </div>
+
+            <div class="content-item">
+                <div class="item-user">
+                    <a class="user-headlogo"><img class="headlogo-item" src="~/Content/images/Login/bg-login.png" /></a>
+                    <a class="user-name">用户名</a>
+                    <div class="user-intro ellipsis" title="用户介绍">用户介绍</div>
+                </div>
+
+                <div class="content-ask">
+                    <a class="ask-question">你见过真正的外星人吗？</a>
+                </div>
+
+                <div class="content-answer">
+                    <div class="answer-wrap clearfix">
+                        <div class="answer-pic floatL" style="display:none;">回答图片</div>
+                        <div class="answer-words floatL">
+                            <span class="words-summary ellipsis-mu">
+                                前1.6行前1.6行前1.6行前1.6行前1.6行前1.6行前1.6行前1.6行行前1.6行
+                            </span>
+                            <p class="words-all"></p>
+                            <a class="words-click">阅读全文</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-operate clearfix">
+                    <div class="vote floatL">
+                        <div class="vote-praise">
+                            <a class="iconfont icon-arrowup"></a>
+                            <a class="praise">赞同</a>
+                            <a class="praise-num">11</a>
+                        </div>
+                        <div class="vote-tread">
+                            <a class="iconfont icon-arrowdown"></a>
+                        </div>
+                    </div>
+                    <div class="content-comment floatL">
+                        <div class="comment-wrap">
+                            <a class="iconfont icon-comment"></a>
+                            <a class="comment-num">44</a>
+                            <span class="comment-text">条评论</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="content-item">
+                <div class="item-user">
+                    <a class="user-headlogo"><img class="headlogo-item" src="~/Content/images/Login/bg-login.png" /></a>
+                    <a class="user-name">用户名</a>
+                    <div class="user-intro ellipsis" title="用户介绍">用户介绍</div>
+                </div>
+
+                <div class="content-ask">
+                    <a class="ask-question">你见过大牛真人吗？</a>
+                </div>
+
+                <div class="content-answer">
+                    <div class="answer-wrap clearfix">
+                        <div class="answer-pic floatL" style="display:none;">回答图片</div>
+                        <div class="answer-words floatL">
+                            <span class="words-summary ellipsis-mu">
+                                前1.6行前1.6行前1.6行前1.6行前1.6行前1.6行前1.6行前1.6行行前1.6行
+                                行前1.6行行前1.6行行前1.6行行前1.6行行前1.6行行前1.6行行前1.6行行前
+                                1.6行行前1.6行行前1.6行行前1.6行行前1.6行1.6行行前1.6行行前1.6行行前1.6行行前1.6行
+                                1.6行行前1.6行行前1.6行行前1.6行行前1.6行
+                                1.6行行前1.6行行前1.6行行前1.6行行前1.6行
+                                1.6行行前1.6行行前1.6行行前1.6行行前1.6行
+                                1.6行行前1.6行行前1.6行行前1.6行行前1.6行
+                                1.6行行前1.6行行前1.6行行前1.6行行前1.6行
+                            </span>
+                            <p class="words-all"></p>
+                            <a class="words-click">阅读全文</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-operate clearfix">
+                    <div class="vote floatL">
+                        <div class="vote-praise">
+                            <a class="iconfont icon-arrowup"></a>
+                            <a class="praise">赞同</a>
+                            <a class="praise-num">11</a>
+                        </div>
+                        <div class="vote-tread">
+                            <a class="iconfont icon-arrowdown"></a>
+                        </div>
+                    </div>
+                    <div class="content-comment floatL">
+                        <div class="comment-wrap">
+                            <a class="iconfont icon-comment"></a>
+                            <a class="comment-num">44</a>
+                            <span class="comment-text">条评论</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="content-item">
+                <div class="item-user">
+                    <a class="user-headlogo"><img class="headlogo-item" src="~/Content/images/Login/bg-login.png" /></a>
+                    <a class="user-name">用户名</a>
+                    <div class="user-intro ellipsis" title="用户介绍">用户介绍</div>
+                </div>
+
+                <div class="content-ask">
+                    <a class="ask-question">你见过大牛真人吗？</a>
+                </div>
+
+                <div class="content-answer">
+                    <div class="answer-wrap clearfix">
+                        <div class="answer-pic floatL" style="display:none;">回答图片</div>
+                        <div class="answer-words floatL">
+                            <span class="words-summary ellipsis-mu">
+                                前1.6行前1.6行前1.6行前1.6行前1.6行前1.6行前1.6行前1.6行行前1.6行
+                                行前1.6行行前1.6行行前1.6行行前1.6行行前1.6行行前1.6行行前1.6行行前
+                                1.6行行前1.6行行前1.6行行前1.6行行前1.6行1.6行行前1.6行行前1.6行行前1.6行行前1.6行
+                                1.6行行前1.6行行前1.6行行前1.6行行前1.6行
+                                1.6行行前1.6行行前1.6行行前1.6行行前1.6行
+                                1.6行行前1.6行行前1.6行行前1.6行行前1.6行
+                                1.6行行前1.6行行前1.6行行前1.6行行前1.6行
+                                1.6行行前1.6行行前1.6行行前1.6行行前1.6行
+                            </span>
+                            <p class="words-all"></p>
+                            <a class="words-click">阅读全文</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-operate clearfix">
+                    <div class="vote floatL">
+                        <div class="vote-praise">
+                            <a class="iconfont icon-arrowup"></a>
+                            <a class="praise">赞同</a>
+                            <a class="praise-num">11</a>
+                        </div>
+                        <div class="vote-tread">
+                            <a class="iconfont icon-arrowdown"></a>
+                        </div>
+                    </div>
+                    <div class="content-comment floatL">
+                        <div class="comment-wrap">
+                            <a class="iconfont icon-comment"></a>
+                            <a class="comment-num">44</a>
+                            <span class="comment-text">条评论</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="content-item">
+                <div class="item-user">
+                    <a class="user-headlogo"><img class="headlogo-item" src="~/Content/images/Login/bg-login.png" /></a>
+                    <a class="user-name">用户名</a>
+                    <div class="user-intro ellipsis" title="用户介绍">用户介绍</div>
+                </div>
+
+                <div class="content-ask">
+                    <a class="ask-question">你见过大牛真人吗？</a>
+                </div>
+
+                <div class="content-answer">
+                    <div class="answer-wrap clearfix">
+                        <div class="answer-pic floatL" style="display:none;">回答图片</div>
+                        <div class="answer-words floatL">
+                            <span class="words-summary ellipsis-mu">
+                                前1.6行前1.6行前1.6行前1.6行前1.6行前1.6行前1.6行前1.6行行前1.6行
+                                行前1.6行行前1.6行行前1.6行行前1.6行行前1.6行行前1.6行行前1.6行行前
+                                1.6行行前1.6行行前1.6行行前1.6行行前1.6行1.6行行前1.6行行前1.6行行前1.6行行前1.6行
+                                1.6行行前1.6行行前1.6行行前1.6行行前1.6行
+                                1.6行行前1.6行行前1.6行行前1.6行行前1.6行
+                                1.6行行前1.6行行前1.6行行前1.6行行前1.6行
+                                1.6行行前1.6行行前1.6行行前1.6行行前1.6行
+                                1.6行行前1.6行行前1.6行行前1.6行行前1.6行
+                            </span>
+                            <p class="words-all"></p>
+                            <a class="words-click">阅读全文</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-operate clearfix">
+                    <div class="vote floatL">
+                        <div class="vote-praise">
+                            <a class="iconfont icon-arrowup"></a>
+                            <a class="praise">赞同</a>
+                            <a class="praise-num">11</a>
+                        </div>
+                        <div class="vote-tread">
+                            <a class="iconfont icon-arrowdown"></a>
+                        </div>
+                    </div>
+                    <div class="content-comment floatL">
+                        <div class="comment-wrap">
+                            <a class="iconfont icon-comment"></a>
+                            <a class="comment-num">44</a>
+                            <span class="comment-text">条评论</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
-    </div>
 
+    </div>
 </div>
+
+<input type="hidden" name="askquesUrl" value="@(Url.Action("AskQuestion","Question"))" />
+<input type="hidden" name="getquesUrl" value="@(Url.Action("GetQuestions", "Question"))" />
+
+@section footer{
+    <script type="text/javascript" src="~/Content/js/question.js"></script>
+}

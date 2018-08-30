@@ -46,6 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Query\PageQuery.cs" />
+    <Compile Include="Query\Query.cs" />
+    <Compile Include="Query\QuestionQuery.cs" />
     <Compile Include="Service\BBSAnswerService.cs" />
     <Compile Include="Service\BBSBooKService.cs" />
     <Compile Include="Service\BBSCommentService.cs" />
@@ -68,9 +71,7 @@
     <Compile Include="ViewModel\BBSUserVM.cs" />
     <Compile Include="ViewModel\OperateLogVM.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Query\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

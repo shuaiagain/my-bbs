@@ -3,20 +3,43 @@
 }
 
 <!DOCTYPE html>
-
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>BBS-论坛</title>
     <link rel="stylesheet" href="~/Content/iconfont/iconfont.css" />
     <link rel="stylesheet" href="~/Content/css/common.css" />
-    <link rel="stylesheet" href="~/Content/css/index.css"/>
-    @RenderSection("header",false)
+    <link rel="stylesheet" href="~/Content/css/index.css" />
+    <link rel="stylesheet" href="~/Content/plugins/layer/theme/default/layer.css" />
+
+    <script type="text/javascript" src="~/Content/plugins/jquery-1.9.0.js"></script>
+    <script type="text/javascript" src="~/Content/plugins/layer/layer.js"></script>
+    @RenderSection("header", false)
 </head>
 <body>
-    <div class="wrapper">
-        @RenderBody()
+    <div class="home-wrap">
+
+        <div class="wrap-head">
+            <div class="header">
+                <div class="header-bar">
+                    <div class="bar-search floatL">
+                        <input class="search-key " value="" placeholder="输入问题" />
+                        <a class="btn-search">提问</a>
+                    </div>
+                    <div class="bar-user floatR">
+                        <a class="user-logo">
+                            <img class="logo-show" src="~/Content/images/Login/bg-login.png" />
+                        </a>
+                        <a class="user-name">demon</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="wrap-body">
+            @RenderBody()
+        </div>
     </div>
-    @RenderSection("footer",false)
+    @RenderSection("footer", false)
 </body>
 </html>

@@ -13,14 +13,20 @@ body {
     height: 100%;
 }
 
+a {
+    text-decoration: none;
+    color: #000;
+    cursor: pointer;
+}
+
 .wrapper {
     width: 100%;
     height: 100%;
-    background:#f6f6f6;
+    background: #f6f6f6;
     /*background:#000;*/
 }
 
-/*注册页start*/
+/*注册页-start*/
 .register {
     position: absolute;
     left: 50%;
@@ -76,4 +82,63 @@ body {
         visibility: hidden;
         font-size: 12px;
     }
-/*注册页end*/
+/*注册页-end*/
+
+/*_layout模板页-header部分-start*/
+
+.home-wrap {
+    height: 100%;
+}
+
+    .home-wrap .wrap-head {
+        background: #fff;
+        position: fixed;
+        top: 0;
+        width: 100%;
+    }
+
+    .home-wrap .wrap-body {
+        height: 100%;
+    }
+
+    .home-wrap .header {
+        width: 70%;
+        height: 60px;
+        margin: 0 auto;
+    }
+
+        .home-wrap .header .header-bar {
+            position: fixed;
+            width: inherit;
+        }
+
+    .home-wrap .bar-search, .bar-user {
+        height: 60px;
+        line-height: 60px;
+    }
+
+    .home-wrap .bar-user .user-logo {
+        display: inline-block;
+        cursor: pointer;
+        width: 26px;
+        height: 26px;
+    }
+
+    .home-wrap .bar-user .logo-show {
+        width: 26px;
+        height: 26px;
+        vertical-align: middle;
+    }
+
+    .home-wrap .bar-user .user-name {
+        cursor: pointer;
+        display: inline-block;
+    }
+
+    .home-wrap .bar-search .search-key {
+        height: 28px;
+        width: 300px;
+        outline: none;
+        padding-left: 5px;
+    }
+/*_layout模板页-header部分-end*/

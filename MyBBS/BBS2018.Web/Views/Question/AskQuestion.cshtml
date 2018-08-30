@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "AskQuestion";
+}
+
+
+<style type="text/css">
+    .ask-question .qu-head {
+        padding: 20px;
+    }
+
+    .ask-question .qu-text {
+        display: inline-block;
+        vertical-align: top;
+        font-weight: 700;
+    }
+
+    .ask-question .qu-content {
+        width: 350px;
+        height: 50px;
+        vertical-align: middle;
+        padding: 2px;
+        outline: none;
+        resize: none;
+    }
+
+    .ask-question .qu-tips {
+        display: none;
+        margin-left: 35px;
+    }
+</style>
+
+<div class="ask-question">
+    <div class="qu-head">
+        <span class="qu-text">问题</span>
+        <textarea class="qu-content" name="qu-content"></textarea>
+        <div class="qu-tips warning">
+            <span class="tips-text"></span>
+        </div>
+    </div>
+
+</div>
+<input type="hidden" name="saveAskUrl" value="@(Url.Action("SaveQuestion", "Question"))" />

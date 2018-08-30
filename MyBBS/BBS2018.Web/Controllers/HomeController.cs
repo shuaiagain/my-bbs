@@ -9,10 +9,14 @@ namespace BBS2018.Web.Controllers
     public class HomeController : BaseController
     {
 
+        #region Index
         public ActionResult Index()
         {
             return View();
-        }
+        } 
+        #endregion
 
+
+     
     }
 }
