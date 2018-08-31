@@ -115,8 +115,10 @@
     <Compile Include="App_Start\FormPrincipal.cs" />
     <Compile Include="App_Start\LogHelper.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AnswerController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PraiseOrTreadController.cs" />
     <Compile Include="Controllers\QuestionController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -132,6 +134,7 @@
     <Content Include="Content\iconfont\iconfont.css" />
     <Content Include="Content\iconfont\iconfont.svg" />
     <Content Include="Content\images\Login\bg-login.png" />
+    <Content Include="Content\js\question-detail.js" />
     <Content Include="Content\js\question.js" />
     <Content Include="Content\plugins\jquery-1.8.3.min.js" />
     <Content Include="Content\plugins\layer\layer.js" />
@@ -186,6 +189,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Question\QuestionDetail.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Answer\WriteAnswer.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

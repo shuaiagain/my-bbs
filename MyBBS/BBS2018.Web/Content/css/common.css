@@ -52,13 +52,30 @@ textL {
     height: 30px;
     width: 60px;
     line-height: 28px;
-    background:#0084ff;
-    color:#fff;
-    text-align:center;
-    font-size:14px;
-    cursor:pointer;
+    background: #0084ff;
+    color: #fff;
+    text-align: center;
+    font-size: 14px;
+    cursor: pointer;
 }
 
-.warning{
-    color:#ff0000;
+.warning {
+    color: #ff0000;
+}
+
+.img24 {
+    width: 24px;
+    height: 24px;
+    vertical-align: top;
+}
+
+.img40 {
+    width: 40px;
+    height: 40px;
+    vertical-align: top;
+}
+
+.updown-active {
+    background: #0084ff !important;
+    color: #fff !important;
 }

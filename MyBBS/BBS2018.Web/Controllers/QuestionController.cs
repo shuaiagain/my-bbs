@@ -20,7 +20,6 @@ namespace BBS2018.Web.Controllers
             if (!query.PageSize.HasValue) query.PageSize = 10;
             if (!query.PageIndex.HasValue) query.PageIndex = 1;
 
-          //List<BBSQuestionVM>
             return null;
         }
         #endregion
@@ -71,10 +70,17 @@ namespace BBS2018.Web.Controllers
         }
         #endregion
 
-        public ActionResult QuestionDetail(int questionId)
+        #region QuestionDetail
+        public ActionResult QuestionDetail(int? questionId)
         {
+            if (!questionId.HasValue) return HttpNotFound();
 
-            return View();
+            BBSQuestionVM quVM = new BBSQuestionService().GetQuestion(questionId.Value);
+
+            if (quVM == null) return HttpNotFound();
+
+            return View(quVM);
         }
+        #endregion
     }
 }

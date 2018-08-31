@@ -1,5 +1,7 @@
 ﻿$(function () {
 
+    bindEvent();
+
     //提问
     $('.question').on('click', function (e) {
 
@@ -31,7 +33,7 @@
                         data: JSON.stringify({ Title: $('.qu-content').val() }),
                         contentType: 'application/json;charset=utf-8',
                         success: function (data) {
-                        
+
                             layer.close(index);
                         }
                     });
@@ -54,5 +56,39 @@
 
 
 
+    }
+
+
+    function bindEvent() {
+
+        //赞
+        $('.vote-praise').on('click', function () {
+         
+            var thisDom = this,
+                 operate = $(this).parents('.content-operate'),
+                 saveUrl = $('input[name="savePraiseTreadUrl"]').val();
+
+            $.ajax({
+                type: 'post',
+                url: saveUrl,
+                data: JSON.stringify({
+                    'BindTableID': operate.data('answerid'),
+                    'BindTableName': 'bbsanswer',
+                    'PriseOrTread': 1,
+                    'ID': operate.data('id')
+                }),
+                contentType: 'application/json;charset=utf-8',
+                success: function (data) {
+
+                    if (data.Code < 0) {
+                        return false;
+                    }
+
+                    $(thisDom).addClass('updown-active');
+                    $(thisDom).find('.praise-num').text(data.Data.Count);
+
+                }
+            });
+        });
     }
 });

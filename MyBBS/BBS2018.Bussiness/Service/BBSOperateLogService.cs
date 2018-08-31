@@ -5,7 +5,7 @@ using System.Text;
 
 namespace BBS2018.Bussiness.Service
 {
-    public class OperateLogService
+    public class BBSOperateLogService
     {
 
     }

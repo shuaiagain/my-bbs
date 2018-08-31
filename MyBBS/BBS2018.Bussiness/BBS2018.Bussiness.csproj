@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\EnumList.cs" />
     <Compile Include="Query\PageQuery.cs" />
     <Compile Include="Query\Query.cs" />
     <Compile Include="Query\QuestionQuery.cs" />
@@ -54,22 +55,23 @@
     <Compile Include="Service\BBSCommentService.cs" />
     <Compile Include="Service\BBSPraiseTreadService.cs" />
     <Compile Include="Service\BBSUserRoleService.cs" />
-    <Compile Include="Service\OperateLogService.cs" />
+    <Compile Include="Service\BBSOperateLogService.cs" />
     <Compile Include="Service\BBSUserService.cs" />
     <Compile Include="Service\BBSRoleService.cs" />
     <Compile Include="Service\BBSQuestionService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\ConnectionUtil.cs" />
     <Compile Include="Utils\EDcryptUtil.cs" />
-    <Compile Include="ViewModel\BBSAnswerVM.cs" />
-    <Compile Include="ViewModel\BBSBookVM.cs" />
-    <Compile Include="ViewModel\BBSCommentVM.cs" />
-    <Compile Include="ViewModel\BBSPraiseTreadVM.cs" />
-    <Compile Include="ViewModel\BBSQuestionVM.cs" />
-    <Compile Include="ViewModel\BBSRoleVM.cs" />
-    <Compile Include="ViewModel\BBSUserRoleVM.cs" />
-    <Compile Include="ViewModel\BBSUserVM.cs" />
-    <Compile Include="ViewModel\OperateLogVM.cs" />
+    <Compile Include="ViewModel\Answer\BBSAnswerVM.cs" />
+    <Compile Include="ViewModel\Book\BBSBookVM.cs" />
+    <Compile Include="ViewModel\Comment\BBSCommentVM.cs" />
+    <Compile Include="ViewModel\BBSPraiseTread\BBSPraiseTreadVM.cs" />
+    <Compile Include="ViewModel\Question\BBSQuestionVM.cs" />
+    <Compile Include="ViewModel\User\BBSRoleVM.cs" />
+    <Compile Include="ViewModel\User\BBSUserRoleVM.cs" />
+    <Compile Include="ViewModel\User\BBSUserVM.cs" />
+    <Compile Include="ViewModel\OperateLog\BBSOperateLogVM.cs" />
+    <Compile Include="ViewModel\BBSPraiseTread\PraiseTreadItemVM.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

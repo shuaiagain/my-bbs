@@ -8,7 +8,7 @@ namespace BBS2018.Bussiness.ViewModel
     /// <summary>
     /// 操作日志视图
     /// </summary>
-    public class OperateLogVM
+    public class BBSOperateLogVM
     {
         public long? ID { get; set; }
 
