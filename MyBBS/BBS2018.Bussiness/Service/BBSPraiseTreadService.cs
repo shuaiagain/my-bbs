@@ -38,7 +38,7 @@ namespace BBS2018.Bussiness.Service
                                                   .Column("InputTime", ptVM.InputTime)
                                                   .ExecuteReturnLastId<long>();
 
-                int count = dbContext.Sql(@" select count(1) from bbspraisetread pt where pt.BindTableName = @bindTaleName and pt.BindTableID = @bindTableID ")
+                int count = dbContext.Sql(@" select 1 from bbspraisetread pt where pt.BindTableName = @bindTaleName and pt.BindTableID = @bindTableID ")
                                      .Parameter("bindTaleName", ptVM.BindTableName)
                                      .Parameter("bindTableID", ptVM.BindTableID)
                                      .QueryMany<int>().Count;

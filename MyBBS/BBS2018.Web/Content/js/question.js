@@ -61,9 +61,13 @@
 
     function bindEvent() {
 
+        var isVoteBack = true;
         //赞
-        $('.vote-praise').on('click', function () {
-         
+        $('.vote-praise,.vote-tread').on('click', function () {
+
+            if (!isVoteBack) return;
+            isVoteBack = false;
+
             var thisDom = this,
                  operate = $(this).parents('.content-operate'),
                  saveUrl = $('input[name="savePraiseTreadUrl"]').val();
@@ -79,14 +83,16 @@
                 }),
                 contentType: 'application/json;charset=utf-8',
                 success: function (data) {
+                    isVoteBack = true;
 
                     if (data.Code < 0) {
                         return false;
                     }
-
+                 
+                    $('.vote-praise,.vote-tread').removeClass('updown-active');
                     $(thisDom).addClass('updown-active');
-                    $(thisDom).find('.praise-num').text(data.Data.Count);
-
+                    debugger;
+                    $(thisDom).parents('.vote').find('.praise-num').text(data.Data.Count);
                 }
             });
         });
