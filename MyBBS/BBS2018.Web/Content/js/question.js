@@ -62,7 +62,7 @@
     function bindEvent() {
 
         var isVoteBack = true;
-        //赞
+        // 赞/踩
         $('.vote-praise,.vote-tread').on('click', function () {
 
             if (!isVoteBack) return;
@@ -88,13 +88,15 @@
                     if (data.Code < 0) {
                         return false;
                     }
-                 
+
                     $('.vote-praise,.vote-tread').removeClass('updown-active');
                     $(thisDom).addClass('updown-active');
-                    debugger;
+
                     $(thisDom).parents('.vote').find('.praise-num').text(data.Data.Count);
                 }
             });
+
         });
+
     }
 });
