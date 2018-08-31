@@ -15,8 +15,6 @@ namespace BBS2018.Web.Controllers
             return View();
         } 
         #endregion
-
-
      
     }
 }
