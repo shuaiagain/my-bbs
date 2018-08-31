@@ -133,7 +133,7 @@
     <Content Include="Content\iconfont\iconfont.svg" />
     <Content Include="Content\images\Login\bg-login.png" />
     <Content Include="Content\js\question.js" />
-    <Content Include="Content\plugins\jquery-1.9.0.js" />
+    <Content Include="Content\plugins\jquery-1.8.3.min.js" />
     <Content Include="Content\plugins\layer\layer.js" />
     <Content Include="Content\plugins\layer\theme\default\icon-ext.png" />
     <Content Include="Content\plugins\layer\theme\default\icon.png" />

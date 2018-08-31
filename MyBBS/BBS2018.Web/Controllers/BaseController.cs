@@ -11,11 +11,11 @@ namespace BBS2018.Web.Controllers
 
         protected override void OnAuthorization(AuthorizationContext filterContext)
         {
-            if (!filterContext.HttpContext.Request.IsAuthenticated)
-            {
-                filterContext.Result = RedirectToAction("Login", "Account");
-                return;
-            }
+            //if (!filterContext.HttpContext.Request.IsAuthenticated && Request["debug"] == "root")
+            //{
+            //    filterContext.Result = RedirectToAction("Login", "Account");
+            //    return;
+            //}
         }
 
         public MyFormsAuthentication UserData
