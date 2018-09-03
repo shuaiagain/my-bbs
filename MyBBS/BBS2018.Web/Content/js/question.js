@@ -1,5 +1,6 @@
 ﻿$(function () {
 
+    getQuestionList();
     bindEvent();
 
     //提问
@@ -51,13 +52,33 @@
         });
     });
 
+    function getQuestionList(keyWord, pageIndex, pageSize) {
 
-    function getQuestions() {
+        var getQuesUrl = $('input[name="getQuesUrl"]').val();
+        var arguments = {
+            PageIndex: pageIndex ? 1 : pageIndex,
+            PageSize: pageSize ? 10 : pageSize,
+            KeyWord: keyWord
+        };
 
+        $.ajax({
+            type: 'post',
+            url: getQuesUrl,
+            data: JSON.stringify(arguments),
+            contentType: 'application/json;charset=utf-8',
+            success: function (data) {
+
+                if (data.Code < 0) {
+
+                }
+                var result = data.Data;
+                $('.main-content').html(renderHtml(result.Data));
+                bindEvent();
+            }
+        });
 
 
     }
-
 
     function bindEvent() {
 
@@ -78,7 +99,7 @@
                 data: JSON.stringify({
                     'BindTableID': operate.data('answerid'),
                     'BindTableName': 'bbsanswer',
-                    'PriseOrTread': 1,
+                    'PraiseOrTread': 1,
                     'ID': operate.data('id')
                 }),
                 contentType: 'application/json;charset=utf-8',
@@ -97,6 +118,55 @@
             });
 
         });
-
     }
+
+    function renderHtml(data) {
+
+        var quDetialUrl = $('input[name="questionDetail"]').val() + '?questionId=';
+        var template = '';
+        for (var i = 0; i < data.length; i++) {
+
+            template += '<div class="content-item">' +
+                          '<div class="item-user">' +
+                              '<a class="user-headlogo"><img class="headlogo-item img24" src="/Content/images/Login/bg-login.png" /></a>' +
+                              '<a class="user-name">' + data[i].UserName + '</a>' +
+                              '<div class="user-intro ellipsis" title="用户介绍">用户介绍</div>' +
+                          '</div>' +
+                          '<div class="content-ask">' +
+                              '<a class="ask-question" target="_blank" href="' + quDetialUrl + data[i].QuestionID + '">' + data[i].Title + '</a>' +
+                          '</div>' +
+                          '<div class="content-answer">' +
+                            '<div class="answer-wrap clearfix">' +
+                                '<div class="answer-pic floatL" style="display:none;">回答图片</div>' +
+                                '<div class="answer-words floatL">' +
+                                   '<span class="words-summary ellipsis-mu">' + data[i].Content + '</span>' +
+                                   '<p class="words-all"></p>' +
+                                   '<a class="words-click">阅读全文</a>' +
+                                '</div>' +
+                            '</div>' +
+                          '</div>' +
+                          '<div class="content-operate clearfix" data-answerid="4" data-id="">' +
+                            '<div class="vote floatL">' +
+                                '<div class="vote-praise">' +
+                                   '<a class="iconfont icon-arrowup"></a>' +
+                                   '<a class="praise">赞同</a>' +
+                                   '<a class="praise-num">' + data[i].TotalPraise + '</a>' +
+                                '</div>' +
+                                '<div class="vote-tread">' +
+                                    '<a class="iconfont icon-arrowdown"></a>' +
+                                '</div>' +
+                            '</div>' +
+                            '<div class="content-comment floatL">' +
+                                '<div class="comment-wrap">' +
+                                   '<a class="iconfont icon-comment"></a>' +
+                                   '<a class="comment-num">0</a>' +
+                                   '<span class="comment-text">条评论</span>' +
+                                '</div>' +
+                            '</div>' +
+                          '</div>' +
+                      '</div>';
+        }
+        return template;
+    }
+
 });

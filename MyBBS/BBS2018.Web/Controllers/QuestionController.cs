@@ -12,15 +12,44 @@ namespace BBS2018.Web.Controllers
     public class QuestionController : BaseController
     {
 
-        #region 获取问题
-        public ActionResult GetQuestions(QuestionQuery query)
+        #region 获取问题列表
+        /// <summary>
+        /// 获取问题列表
+        /// </summary>
+        /// <param name="query"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult GetQuestionList(QuestionQuery query)
         {
             if (query == null) new QuestionQuery();
 
             if (!query.PageSize.HasValue) query.PageSize = 10;
             if (!query.PageIndex.HasValue) query.PageIndex = 1;
 
-            return null;
+            try
+            {
+                PageVM<QuestionItemVM> quData = new BBSQuestionService().GetQuestionPageList(query);
+                if (quData == null || quData.Data == null || quData.Data.Count == 0)
+                {
+                    return Json(new
+                    {
+                        Code = -200,
+                        Msg = "暂无数据",
+                        Data = quData
+                    });
+                }
+
+                return Json(new
+                {
+                    Code = 200,
+                    Msg = "获取成功",
+                    Data = quData
+                });
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         #endregion
 
@@ -75,7 +104,7 @@ namespace BBS2018.Web.Controllers
         {
             if (!questionId.HasValue) return HttpNotFound();
 
-            BBSQuestionVM quVM = new BBSQuestionService().GetQuestion(questionId.Value);
+            BBSQuestionVM quVM = new BBSQuestionService().GetQuestionByID(questionId.Value);
 
             if (quVM == null) return HttpNotFound();
 

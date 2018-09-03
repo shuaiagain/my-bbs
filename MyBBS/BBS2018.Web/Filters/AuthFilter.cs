@@ -11,13 +11,12 @@ namespace BBS2018.Web.Filters
     {
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
-            if (!filterContext.HttpContext.Request.IsAuthenticated)
+            if (filterContext.HttpContext.Request.IsAuthenticated)
             {
-                filterContext.Result = new RedirectResult("~/Account/Login");
+                filterContext.Result = new RedirectResult("~/Home/Index");
                 return;
             }
 
-            filterContext.Result = new RedirectResult("~/Home/Index");
         }
     }
 }

@@ -22,7 +22,7 @@ namespace BBS2018.Bussiness.Service
         {
             if (ptVM == null || !ptVM.BindTableID.HasValue || string.IsNullOrEmpty(ptVM.BindTableName)) return null;
 
-            using (var dbContext = new DbContext().ConnectionStringName(ConnectionUtil.connBBS, new MySqlProvider()))
+            using (var dbContext = new DbContext().ConnectionStringName(ConnectionUtil.connBBS, new MySqlProvider()).UseTransaction(true))
             {
 
                 dbContext.Sql(@" delete from  bbspraisetread where BindTableID = @bindTableID and BindTableName = @bindTableName and UserID = @userID ")
@@ -42,6 +42,8 @@ namespace BBS2018.Bussiness.Service
                                      .Parameter("bindTaleName", ptVM.BindTableName)
                                      .Parameter("bindTableID", ptVM.BindTableID)
                                      .QueryMany<int>().Count;
+
+                dbContext.Commit();
 
                 PraiseTreadItemVM itemVM = new PraiseTreadItemVM();
                 itemVM.Item = ptVM;

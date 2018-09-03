@@ -105,6 +105,7 @@
                     color: #0084ff;
                     padding: 5px 10px;
                     cursor: pointer;
+                    margin-right:5px;
                 }
 
 
@@ -132,122 +133,14 @@
             </div>
         </div>
 
-        <div class="main-content">
-
-            <div class="content-item">
-                <div class="item-user">
-                    <a class="user-headlogo"><img class="headlogo-item img24" src="~/Content/images/Login/bg-login.png" /></a>
-                    <a class="user-name">用户名</a>
-                    <div class="user-intro ellipsis" title="用户介绍">用户介绍</div>
-                </div>
-
-                <div class="content-ask">
-                    <a class="ask-question" target="_blank" href="@(Url.Action("QuestionDetail", "Question", new { questionId = 1 }))">你见过大牛真人吗？</a>
-                </div>
-
-                <div class="content-answer">
-                    <div class="answer-wrap clearfix">
-                        <div class="answer-pic floatL" style="display:none;">回答图片</div>
-                        <div class="answer-words floatL">
-                            <span class="words-summary ellipsis-mu">
-                                前1.6行前1.6行前1.6行前1.6行前1.6行前1.6行前1.6行前1.6行行前1.6行
-                                行前1.6行行前1.6行行前1.6行行前1.6行行前1.6行行前1.6行行前1.6行行前
-                                1.6行行前1.6行行前1.6行行前1.6行行前1.6行1.6行行前1.6行行前1.6行行前1.6行行前1.6行
-                                1.6行行前1.6行行前1.6行行前1.6行行前1.6行
-                                1.6行行前1.6行行前1.6行行前1.6行行前1.6行
-                                1.6行行前1.6行行前1.6行行前1.6行行前1.6行
-                                1.6行行前1.6行行前1.6行行前1.6行行前1.6行
-                                1.6行行前1.6行行前1.6行行前1.6行行前1.6行
-                            </span>
-                            <p class="words-all"></p>
-                            <a class="words-click">阅读全文</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="content-operate clearfix" data-answerid="4" data-id="">
-                    <div class="vote floatL">
-                        <div class="vote-praise">
-                            <a class="iconfont icon-arrowup"></a>
-                            <a class="praise">赞同</a>
-                            <a class="praise-num">0</a>
-                        </div>
-                        <div class="vote-tread">
-                            <a class="iconfont icon-arrowdown"></a>
-                        </div>
-                    </div>
-                    <div class="content-comment floatL">
-                        <div class="comment-wrap">
-                            <a class="iconfont icon-comment"></a>
-                            <a class="comment-num">0</a>
-                            <span class="comment-text">条评论</span>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="content-item">
-                <div class="item-user">
-                    <a class="user-headlogo"><img class="headlogo-item img24" src="~/Content/images/Login/bg-login.png" /></a>
-                    <a class="user-name">用户名</a>
-                    <div class="user-intro ellipsis" title="用户介绍">用户介绍</div>
-                </div>
-
-                <div class="content-ask">
-                    <a class="ask-question">你见过大牛真人吗？</a>
-                </div>
-
-                <div class="content-answer">
-                    <div class="answer-wrap clearfix">
-                        <div class="answer-pic floatL" style="display:none;">回答图片</div>
-                        <div class="answer-words floatL">
-                            <span class="words-summary ellipsis-mu">
-                                前1.6行前1.6行前1.6行前1.6行前1.6行前1.6行前1.6行前1.6行行前1.6行
-                                行前1.6行行前1.6行行前1.6行行前1.6行行前1.6行行前1.6行行前1.6行行前
-                                1.6行行前1.6行行前1.6行行前1.6行行前1.6行1.6行行前1.6行行前1.6行行前1.6行行前1.6行
-                                1.6行行前1.6行行前1.6行行前1.6行行前1.6行
-                                1.6行行前1.6行行前1.6行行前1.6行行前1.6行
-                                1.6行行前1.6行行前1.6行行前1.6行行前1.6行
-                                1.6行行前1.6行行前1.6行行前1.6行行前1.6行
-                                1.6行行前1.6行行前1.6行行前1.6行行前1.6行
-                            </span>
-                            <p class="words-all"></p>
-                            <a class="words-click">阅读全文</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="content-operate clearfix">
-                    <div class="vote floatL">
-                        <div class="vote-praise">
-                            <a class="iconfont icon-arrowup"></a>
-                            <a class="praise">赞同</a>
-                            <a class="praise-num">11</a>
-                        </div>
-                        <div class="vote-tread">
-                            <a class="iconfont icon-arrowdown"></a>
-                        </div>
-                    </div>
-                    <div class="content-comment floatL">
-                        <div class="comment-wrap">
-                            <a class="iconfont icon-comment"></a>
-                            <a class="comment-num">44</a>
-                            <span class="comment-text">条评论</span>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-
+        <div class="main-content"></div>
     </div>
 </div>
 
 <input type="hidden" name="askquesUrl" value="@(Url.Action("AskQuestion","Question"))" />
-<input type="hidden" name="getquesUrl" value="@(Url.Action("GetQuestions", "Question"))" />
+<input type="hidden" name="getQuesUrl" value="@(Url.Action("GetQuestionList", "Question"))" />
 <input type="hidden" name="savePraiseTreadUrl" value="@Url.Action("SavePraiseOrTread", "PraiseOrTread")"/>
+<input type="hidden" name="questionDetail" value="@Url.Action("QuestionDetail", "Question")" />
 @section footer{
     <script type="text/javascript" src="~/Content/js/question.js"></script>
 }
