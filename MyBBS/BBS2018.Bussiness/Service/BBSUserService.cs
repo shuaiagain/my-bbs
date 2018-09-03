@@ -55,5 +55,29 @@ namespace BBS2018.Bussiness.Service
         }
         #endregion
 
+        #region 用户登录
+        /// <summary>
+        /// 用户登录
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        public BBSUserVM Login(BBSUserVM user)
+        {
+            if (user == null || string.IsNullOrEmpty(user.LoginName) || string.IsNullOrEmpty(user.Password))
+                return null;
+
+            using (var dbContext = new DbContext().ConnectionStringName(ConnectionUtil.connBBS, new MySqlProvider()))
+            {
+                user = dbContext.Sql("select * from bbsuser u where u.LoginName = @loginName and u.Password = @password ")
+                                   .Parameter("loginName", user.LoginName)
+                                   .Parameter("password", EDcryptUtil.MD5Encrypt(user.Password))
+                                   .QuerySingle<BBSUserVM>();
+
+                return user;
+            }
+
+        }
+        #endregion
+
     }
 }

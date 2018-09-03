@@ -1,13 +1,70 @@
 ﻿@{
-    ViewBag.Title = "Register";
+    ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_LayoutLogin.cshtml";
 }
 
-<div class="register">
 
-    <div class="register-wrapper">
+<style type="text/css">
+    .login {
+        position: absolute;
+        left: 50%;
+        top: 100px;
+    }
+
+    .login-wrapper {
+        width: 400px;
+        height: 300px;
+        background: #fff;
+    }
+
+        .login-wrapper .header {
+            height: 60px;
+            line-height: 60px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .login-wrapper .content {
+            text-align: center;
+        }
+
+            .login-wrapper .content .username, .password {
+                display: inline-block;
+                height: 40px;
+                line-height: 40px;
+                width: 220px;
+                border: none;
+                border-bottom: 1px solid #bbb;
+                outline: none;
+            }
+
+        .login-wrapper .user-submit {
+            margin-top: 40px;
+        }
+
+        .login-wrapper .login-btn {
+            display: inline-block;
+            height: 38px;
+            line-height: 38px;
+            background: #0084ff;
+            width: 220px;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .login-wrapper .tips-text {
+            color: #ff0000;
+            height: 22px;
+            display: inline-block;
+            visibility: hidden;
+            font-size: 12px;
+        }
+</style>
+<div class="login">
+    <div class="login-wrapper">
         <div class="header">
-            <a>用户注册</a>
+            <a>用户登录</a>
         </div>
         <div class="content">
             <div class="content-tips">
@@ -23,23 +80,21 @@
             </div>
 
             <div class="user-submit">
-                <a class="register-btn">注册</a>
+                <a class="login-btn">登录</a>
             </div>
-
         </div>
     </div>
-    <input type="hidden" name="registerUrl" value="@(Url.Action("Register","Account"))" />
+    <input type="hidden" name="loginUrl" value="@(Url.Action("Login","Account"))" />
 </div>
 
 @section footer{
     <script type="text/javascript">
         $(function () {
-
             //居中
-            $('.register').css('margin-left', $('.register').outerWidth() * (-0.5));
+            $('.login').css('margin-left', $('.login').outerWidth() * (-0.5));
 
-            //注册
-            $('.register-btn').on('click', function () {
+            //登录
+            $('.login-btn').on('click', function () {
 
                 var username = $('.username').val();
                 var pwd = $('.password').val();
@@ -58,11 +113,11 @@
                     return;
                 }
 
-                var registerUrl = $('input[name="registerUrl"]').val();
+                var loginUrl = $('input[name="loginUrl"]').val();
 
                 $.ajax({
                     type: 'post',
-                    url: registerUrl,
+                    url: loginUrl,
                     data: JSON.stringify({ LoginName: username, Password: pwd }),
                     contentType: 'application/json;charset=utf-8',
                     success: function (data) {
@@ -82,6 +137,7 @@
                 $('.tips-text').text('');
                 $('.tips-text').css('visibility', 'hidden');
             });
+
         });
     </script>
 }

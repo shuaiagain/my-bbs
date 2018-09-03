@@ -120,6 +120,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PraiseOrTreadController.cs" />
     <Compile Include="Controllers\QuestionController.cs" />
+    <Compile Include="Filters\AuthFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -192,6 +193,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Answer\WriteAnswer.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\Login.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
