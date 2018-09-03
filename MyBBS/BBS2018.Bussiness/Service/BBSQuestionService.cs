@@ -108,11 +108,22 @@ namespace BBS2018.Bussiness.Service
 
             using (var dbContext = new DbContext().ConnectionStringName(ConnectionUtil.connBBS, new MySqlProvider()))
             {
-                BBSQuestionVM vm = dbContext.Sql(@" select * from bbsquestion q where q.ID = @questionId ")
+                BBSQuestionVM question = dbContext.Sql(@" select * from bbsquestion q where q.ID = @questionId ")
                                           .Parameter("questionId", questionId)
                                           .QuerySingle<BBSQuestionVM>();
 
-                return vm;
+                if (question == null) return null;
+
+                //todo
+                List<QuestionItemVM> itemList = dbContext.Sql("").QueryMany<QuestionItemVM>();
+
+                QuestionDetailVM result = new QuestionDetailVM()
+                {
+                    ID = question.ID,
+                    Title = question.Title,
+                };
+
+                return result;
             }
         }
         #endregion

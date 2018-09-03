@@ -11,7 +11,7 @@ namespace BBS2018.Bussiness.ViewModel
     public class BBSQuestionVM
     {
         /// <summary>
-        /// ID
+        /// 问题ID
         /// </summary>
         public long? ID { get; set; }
 

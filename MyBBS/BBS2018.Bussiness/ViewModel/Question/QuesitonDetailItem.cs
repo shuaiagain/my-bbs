@@ -7,7 +7,6 @@ namespace BBS2018.Bussiness.ViewModel
 {
     public class QuesitonDetailItem
     {
-
         /// <summary>
         /// 回答ID
         /// </summary>
