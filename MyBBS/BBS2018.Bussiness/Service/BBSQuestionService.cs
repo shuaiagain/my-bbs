@@ -52,24 +52,29 @@ namespace BBS2018.Bussiness.Service
 	                                        t.TotalPraise,
 	                                        t.TotalTread
 	                                        from bbsquestion q left join tempAnswer t on q.ID = t.QuestionID 
-	                                        join bbsanswer a on t.AnswerID = a.ID 
+	                                        left join bbsanswer a on t.AnswerID = a.ID 
 	                                        Where 1=1 ");
+
+                //if (!string.IsNullOrEmpty(query.KeyWord))
+                //{
+                //    sql += " AND q.Title Like '%'+@keyWord+'%' ";
+                //    paramList.Add(new SqlParameter("keyWord", query.KeyWord));
+                //}
 
                 if (!string.IsNullOrEmpty(query.KeyWord))
                 {
-                    sql += " AND q.Title Like '%'+ @keyWord +'%' ";
-                    paramList.Add(new SqlParameter("@keyWord", query.KeyWord));
+                    sql += string.Format(@" AND q.Title Like '%{0}%' ", query.KeyWord);
                 }
 
                 sql += "  ORDER BY q.InputTime DESC ";
 
                 string sqlPage = string.Format(" Limit {0},{1} ", (query.PageIndex - 1) * query.PageSize, query.PageSize);
-                List<QuestionItemVM> quList = dbContext.Sql(sql + sqlPage, paramList.ToArray()).QueryMany<QuestionItemVM>((QuestionItemVM vm, IDataReader reader) =>
+                List<QuestionItemVM> quList = dbContext.Sql(sql + sqlPage).QueryMany<QuestionItemVM>((QuestionItemVM vm, IDataReader reader) =>
                 {
                     vm.QuestionID = reader.GetInt64("QuestionID");
                     vm.AnswerID = reader.GetInt64("AnswerID");
                     vm.Title = reader.GetString("Title");
-                    vm.Content = reader.GetString("Content");
+                    vm.Content = string.IsNullOrEmpty(reader.GetString("Content")) ? "" : reader.GetString("Content");
                     vm.TotalPraise = Convert.ToInt32(reader["TotalPraise"]);
                     vm.TotalTread = Convert.ToInt32(reader["TotalTread"]);
                     vm.UserID = Convert.ToInt32(reader["UserID"]);

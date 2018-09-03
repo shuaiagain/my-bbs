@@ -3,6 +3,19 @@
     getQuestionList();
     bindEvent();
 
+    //查询
+    $('.btn-search').on('click', function (e) {
+
+        getQuestionList($.trim($('.search-key ').val()), 1);
+    });
+
+    $('.search-key ').on('keydown', function (e) {
+
+        if (e.keyCode == 13) {
+            $('.btn-search').trigger('click');
+        }
+    });
+
     //提问
     $('.question').on('click', function (e) {
 
@@ -35,6 +48,7 @@
                         contentType: 'application/json;charset=utf-8',
                         success: function (data) {
 
+                            $('.btn-search').trigger('click');
                             layer.close(index);
                         }
                     });
@@ -52,6 +66,7 @@
         });
     });
 
+    //获取列表
     function getQuestionList(keyWord, pageIndex, pageSize) {
 
         var getQuesUrl = $('input[name="getQuesUrl"]').val();
@@ -68,9 +83,11 @@
             contentType: 'application/json;charset=utf-8',
             success: function (data) {
 
-                if (data.Code < 0) {
-
+                if (data.Code == -200) {
+                    $('.main-content').html(renderHtml());
+                    return;
                 }
+
                 var result = data.Data;
                 $('.main-content').html(renderHtml(result.Data));
                 bindEvent();
@@ -80,6 +97,7 @@
 
     }
 
+    //绑定事件
     function bindEvent() {
 
         var isVoteBack = true;
@@ -99,8 +117,7 @@
                 data: JSON.stringify({
                     'BindTableID': operate.data('answerid'),
                     'BindTableName': 'bbsanswer',
-                    'PraiseOrTread': 1,
-                    'ID': operate.data('id')
+                    'PraiseOrTread': $(this).data('type')
                 }),
                 contentType: 'application/json;charset=utf-8',
                 success: function (data) {
@@ -120,10 +137,18 @@
         });
     }
 
+    //渲染列表html
     function renderHtml(data) {
 
-        var quDetialUrl = $('input[name="questionDetail"]').val() + '?questionId=';
+        if (!data) {
+
+            return '<div class="qu-nodata">' +
+                        '<span>未找到你提的问题囧</span>' +
+                   '</div>';
+        }
+
         var template = '';
+        var quDetialUrl = $('input[name="questionDetail"]').val() + '?questionId=';
         for (var i = 0; i < data.length; i++) {
 
             template += '<div class="content-item">' +
@@ -134,25 +159,39 @@
                           '</div>' +
                           '<div class="content-ask">' +
                               '<a class="ask-question" target="_blank" href="' + quDetialUrl + data[i].QuestionID + '">' + data[i].Title + '</a>' +
-                          '</div>' +
-                          '<div class="content-answer">' +
+                          '</div>';
+
+            if (data[i].Content) {
+                template += '<div class="content-answer">' +
+                                '<div class="answer-wrap clearfix">' +
+                                    '<div class="answer-pic floatL" style="display:none;">回答图片</div>' +
+                                    '<div class="answer-words floatL">' +
+                                       '<span class="words-summary ellipsis-mu">' + data[i].Content + '</span>' +
+                                       '<p class="words-all"></p>' +
+                                       '<a class="words-click">阅读全文</a>' +
+                                    '</div>' +
+                                '</div>' +
+                              '</div>';
+            } else {
+
+                template += '<div class="content-answer">' +
                             '<div class="answer-wrap clearfix">' +
-                                '<div class="answer-pic floatL" style="display:none;">回答图片</div>' +
-                                '<div class="answer-words floatL">' +
-                                   '<span class="words-summary ellipsis-mu">' + data[i].Content + '</span>' +
-                                   '<p class="words-all"></p>' +
-                                   '<a class="words-click">阅读全文</a>' +
+                                '<div class="wrap-con">' +
+                                    '<a class="iconfont icon-answer"></a>' +
+                                    '<a class="con-qu">回答</a>' +
                                 '</div>' +
                             '</div>' +
-                          '</div>' +
-                          '<div class="content-operate clearfix" data-answerid="4" data-id="">' +
+                          '</div>';
+            }
+
+            template += '<div class="content-operate clearfix" data-answerid="' + data[i].AnswerID + '">' +
                             '<div class="vote floatL">' +
-                                '<div class="vote-praise">' +
+                                '<div class="vote-praise" data-type="1">' +
                                    '<a class="iconfont icon-arrowup"></a>' +
                                    '<a class="praise">赞同</a>' +
                                    '<a class="praise-num">' + data[i].TotalPraise + '</a>' +
                                 '</div>' +
-                                '<div class="vote-tread">' +
+                                '<div class="vote-tread" data-type="2">' +
                                     '<a class="iconfont icon-arrowdown"></a>' +
                                 '</div>' +
                             '</div>' +
@@ -168,5 +207,6 @@
         }
         return template;
     }
+
 
 });
