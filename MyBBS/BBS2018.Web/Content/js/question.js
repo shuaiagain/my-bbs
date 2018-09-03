@@ -17,7 +17,7 @@
     });
 
     //提问
-    $('.question').on('click', function (e) {
+    $('.ask ').on('click', function (e) {
 
         var askUrl = $('input[name="askquesUrl"]').val();
         $.get(askUrl, function (data) {

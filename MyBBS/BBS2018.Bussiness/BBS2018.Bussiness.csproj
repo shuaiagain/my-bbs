@@ -68,6 +68,8 @@
     <Compile Include="ViewModel\BBSPraiseTread\BBSPraiseTreadVM.cs" />
     <Compile Include="ViewModel\Common\PageVM.cs" />
     <Compile Include="ViewModel\Question\BBSQuestionVM.cs" />
+    <Compile Include="ViewModel\Question\QuesitonDetailItem.cs" />
+    <Compile Include="ViewModel\Question\QuestionDetailVM.cs" />
     <Compile Include="ViewModel\Question\QuestionItemVM.cs" />
     <Compile Include="ViewModel\User\BBSRoleVM.cs" />
     <Compile Include="ViewModel\User\BBSUserRoleVM.cs" />

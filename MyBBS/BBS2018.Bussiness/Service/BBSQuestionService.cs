@@ -102,7 +102,7 @@ namespace BBS2018.Bussiness.Service
         /// </summary>
         /// <param name="questionId"></param>
         /// <returns></returns>
-        public BBSQuestionVM GetQuestionByID(int questionId)
+        public QuestionDetailVM GetQuestionByID(int questionId)
         {
             if (questionId == 0) return null;
 
