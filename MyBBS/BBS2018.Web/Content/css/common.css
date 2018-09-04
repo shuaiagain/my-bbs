@@ -80,6 +80,32 @@ textL {
     color: #fff !important;
 }
 
-.no-answer{
-    color:#979797;
+.no-answer {
+    color: #979797;
 }
+
+/*点赞、踩-start*/
+.content-operate {
+    margin-top: 12px;
+}
+
+.content-operate .vote {
+    margin-right: 20px;
+}
+
+.content-operate .vote-praise, .vote-tread {
+    display: inline-block;
+    background: #e5f2ff;
+    color: #0084ff;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.content-operate .comment-wrap {
+    display: inline-block;
+    padding: 5px 0px;
+    color: #8590a6;
+    cursor: pointer;
+}
+/*点赞、踩-end*/

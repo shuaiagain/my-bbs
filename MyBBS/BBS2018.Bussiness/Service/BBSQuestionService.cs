@@ -110,6 +110,7 @@ namespace BBS2018.Bussiness.Service
         /// <returns></returns>
         public QuestionDetailVM GetQuestionByID(int questionId)
         {
+
             if (questionId == 0) return null;
 
             using (var dbContext = new DbContext().ConnectionStringName(ConnectionUtil.connBBS, new MySqlProvider()))
@@ -153,11 +154,56 @@ namespace BBS2018.Bussiness.Service
                                                                         vm.UserName = reader.GetString("UserName");
                                                                         vm.LogoUrl = reader.GetString("LogoUrl");
                                                                     });
+
                 question.Items = itemList;
                 return question;
             }
         }
         #endregion
+
+        public PageVM<QuesitonDetailItem> GetAnswerPageList(int questionId)
+        {
+
+            if (questionId == 0) return null;
+
+            using (var dbContext = new DbContext().ConnectionStringName(ConnectionUtil.connBBS, new MySqlProvider()))
+            {
+
+                List<QuesitonDetailItem> itemList = dbContext.Sql(@"select 
+	                                                                    a.ID as AnswerID,
+	                                                                    a.Content,
+	                                                                    a.InputTime as EditTime,
+	                                                                    (select Count(1) from bbspraisetread p where p.BindTableID = a.ID and p.BindTableName = 'bbsanswer' and p.PraiseOrTread = 1)as PraiseCount,
+	                                                                    (select Count(1) from bbspraisetread p where p.BindTableID = a.ID and p.BindTableName = 'bbsanswer' and p.PraiseOrTread = 2)as TreadCount,
+	                                                                    u.ID as UserID,
+	                                                                    u.LoginName as UserName,
+	                                                                    u.HeadImageUrl as LogoUrl
+                                                                    from bbsanswer a join bbsuser u on a.UserID = u.ID
+                                                                    where a.QuestionID = @questionID ")
+                                                                   .Parameter("questionID", questionId)
+                                                                   .QueryMany<QuesitonDetailItem>
+                                                                   ((QuesitonDetailItem vm, IDataReader reader) =>
+                                                                   {
+                                                                       vm.AnswerID = reader.GetInt64("AnswerID");
+                                                                       vm.Content = reader.GetString("Content");
+                                                                       vm.EditTime = reader.GetDateTime("EditTime");
+                                                                       vm.PraiseCount = Convert.ToInt32(reader["PraiseCount"]);
+                                                                       vm.TreadCount = Convert.ToInt32(reader["TreadCount"]);
+                                                                       vm.UserID = reader.GetInt32("UserID");
+                                                                       vm.UserName = reader.GetString("UserName");
+                                                                       vm.LogoUrl = reader.GetString("LogoUrl");
+                                                                   });
+
+                PageVM<QuesitonDetailItem> pageList = new PageVM<QuesitonDetailItem>()
+                {
+                    Data = itemList
+                };
+
+                if (itemList == null || itemList.Data == null || itemList.Data.Count == 0) return null;
+
+                return itemList;
+            }
+        }
 
         #region 保存问题
         /// <summary>

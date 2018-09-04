@@ -25,7 +25,7 @@ namespace BBS2018.Web.Controllers
 
             if (!query.PageSize.HasValue) query.PageSize = 10;
             if (!query.PageIndex.HasValue) query.PageIndex = 1;
-            
+
             query.UserID = this.UserData.UserID;
 
             try
@@ -111,6 +111,35 @@ namespace BBS2018.Web.Controllers
             if (quVM == null) return HttpNotFound();
 
             return View(quVM);
+        }
+        #endregion
+
+        #region getAnswerPageList
+        public ActionResult getAnswerPageList(int? questionId)
+        {
+
+            if (!questionId.HasValue) return Json(new
+                     {
+                         Code = -400,
+                         Msg = "参数不能为空",
+                         Data = ""
+                     });
+
+            QuestionDetailVM quVM = new BBSQuestionService().GetQuestionByID(questionId.Value);
+
+            if (quVM == null) return Json(new
+            {
+                Code = -200,
+                Msg = "暂无数据",
+                Data = ""
+            });
+
+            return Json(new
+            {
+                Code = 200,
+                Msg = "获取成功",
+                Data = quVM
+            });
         }
         #endregion
     }

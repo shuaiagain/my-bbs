@@ -9,7 +9,7 @@
     <style type="text/css">
         .ques-detail {
             width: 100%;
-            height: 100%;
+            /*height: 100%;*/
             padding-top: 60px;
             background: #f6f6f6;
         }
@@ -133,7 +133,6 @@
                 foreach (var item in Model.Items)
                 {
                     <div class="content-item">
-
                         <div class="item-user clearfix">
                             <a class="user-logo floatL"><img class="logo-show img40" src="~/Content/images/Login/bg-login.png" /></a>
                             <div class="user-info floatL">
@@ -141,7 +140,6 @@
                                 <div class="info-domain"><a class="domain-show">your honours</a></div>
                             </div>
                         </div>
-
                         <div class="item-praise">
                             <a class="praise-show">
                                 <span class="show-other">牛牛</span>
@@ -150,15 +148,31 @@
                                 <span class="show-last">人赞同了该回答</span>
                             </a>
                         </div>
-
                         <div class="item-answer">
-                            <span class="answer-text">
-                               @(item.Content)
-                            </span>
+                            <span class="answer-text">@(item.Content)</span>
                         </div>
                         <div class="item-date">
                             <span class="date-text">发布于</span>
                             <span class="date-show">@(item.EditTime.Value.ToString("yyyy-MM-dd HH:mm:ss"))</span>
+                        </div>
+                        <div class="content-operate clearfix" data-answerid="6">
+                            <div class="vote floatL">
+                                <div class="vote-praise updown-active" data-type="1">
+                                    <a class="iconfont icon-arrowup"></a>
+                                    <a class="praise">赞同</a>
+                                    <a class="praise-num">@(item.PraiseCount)</a>
+                                </div>
+                                <div class="vote-tread " data-type="2">
+                                    <a class="iconfont icon-arrowdown"></a>
+                                </div>
+                            </div>
+                            <div class="content-comment floatL">
+                                <div class="comment-wrap">
+                                    <a class="iconfont icon-comment"></a>
+                                    <a class="comment-num">0</a>
+                                    <span class="comment-text">条评论</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 }
@@ -171,6 +185,7 @@
 <input type="hidden" name="writeAnswerUrl" value="@(Url.Action("WriteAnswer", "Answer"))" />
 <input type="hidden" name="saveAnswerUrl" value="@(Url.Action("SaveAnswer", "Answer"))" />
 <input type="hidden" name="questionId" value="@(Model.ID)" />
+<input type="hidden" name="getAnswerUrl" value="@(Url.Action("","Question"))"/>
 @section footer{
     <script type="text/javascript" src="~/Content/js/question-detail.js"></script>
 }

@@ -42,4 +42,33 @@
         });
     });
 
+    function getAnswerList() {
+
+        var getQuesUrl = $('input[name="getQuesUrl"]').val();
+        var arguments = {
+            PageIndex: pageIndex ? 1 : pageIndex,
+            PageSize: pageSize ? 10 : pageSize,
+            KeyWord: keyWord
+        };
+
+        $.ajax({
+            type: 'post',
+            url: getQuesUrl,
+            data: JSON.stringify(arguments),
+            contentType: 'application/json;charset=utf-8',
+            success: function (data) {
+
+                if (data.Code == -200) {
+                    $('.main-content').html(renderHtml());
+                    return;
+                }
+
+                var result = data.Data;
+                $('.main-content').html(renderHtml(result.Data));
+                bindEvent();
+            }
+        });
+    }
+
+
 });

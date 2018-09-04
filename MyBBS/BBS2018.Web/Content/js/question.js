@@ -94,7 +94,6 @@
             }
         });
 
-
     }
 
     //绑定事件
@@ -128,7 +127,7 @@
                         return false;
                     }
 
-                    $('.vote-praise,.vote-tread').removeClass('updown-active');
+                    $(thisDom).parents('.vote ').find('.vote-praise,.vote-tread').removeClass('updown-active');
                     $(thisDom).addClass('updown-active');
 
                     $(thisDom).parents('.vote').find('.praise-num').text(data.Data.Count);
@@ -136,6 +135,8 @@
             });
 
         });
+
+
     }
 
     //渲染列表html
@@ -175,14 +176,14 @@
                               '</div>';
             } else {
 
-                template += '<div class="content-answer">' +
-                            '<div class="answer-wrap clearfix">' +
-                                '<div class="wrap-con">' +
-                                    '<a class="iconfont icon-answer"></a>' +
-                                    '<a class="con-qu">回答</a>' +
-                                '</div>' +
-                            '</div>' +
-                          '</div>';
+                //template += '<div class="content-answer">' +
+                //            '<div class="answer-wrap clearfix">' +
+                //                '<div class="wrap-con">' +
+                //                    '<a class="iconfont icon-answer"></a>' +
+                //                    '<a class="con-qu">回答</a>' +
+                //                '</div>' +
+                //            '</div>' +
+                //          '</div>';
             }
 
             if (data[i].Content) {
