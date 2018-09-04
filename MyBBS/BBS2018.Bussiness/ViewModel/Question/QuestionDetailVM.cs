@@ -18,43 +18,13 @@ namespace BBS2018.Bussiness.ViewModel
         public string Title { get; set; }
 
         /// <summary>
-        /// 回答者名称
+        /// 总共的回答数量
         /// </summary>
-        public string UserName { get; set; }
+        public int? AnswerCount { get; set; }
 
         /// <summary>
-        /// 回答者ID
+        /// 问题的回答
         /// </summary>
-        public int? UserID { get; set; }
-
-        /// <summary>
-        /// 回答者头像Url
-        /// </summary>
-        public string LogoUrl { get; set; }
-
-        /// <summary>
-        /// 回答ID
-        /// </summary>
-        public long? AnswerID { get; set; }
-
-        /// <summary>
-        /// 回答的内容
-        /// </summary>
-        public string Content { get; set; }
-
-        /// <summary>
-        /// 回答日期
-        /// </summary>
-        public DateTime? EditTime { get; set; }
-
-        /// <summary>
-        /// 最后一个赞的人的名称
-        /// </summary>
-        public string LastPraiseUserName { get; set; }
-
-        /// <summary>
-        /// 点赞数量
-        /// </summary>
-        public int? PraiseCount { get; set; }
+        public List<QuesitonDetailItem> Items { get; set; }
     }
 }

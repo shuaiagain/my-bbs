@@ -1,5 +1,5 @@
 ﻿@using BBS2018.Bussiness.ViewModel
-@model BBSQuestionVM
+@model QuestionDetailVM
 @{
     ViewBag.Title = "QuestionDetial";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -103,7 +103,7 @@
         <div class="detail-title">
             <div class="title-wrap">
                 <div class="title-up">
-                    <h2 class="up-text">你见过大牛真人吗？</h2>
+                    <h2 class="up-text">@(Model.Title)</h2>
                 </div>
                 <div class="title-down">
                     <div class="down-write">
@@ -120,7 +120,7 @@
 
             <div class="content-bar clearfix">
                 <div class="bar-left floatL">
-                    <strong class="an-count">100</strong><span class="an-text">个回答</span>
+                    <strong class="an-count">@(Model.AnswerCount)</strong><span class="an-text">个回答</span>
                 </div>
                 <div class="bar-right floatR">
                     <a class="defult-sort">默认排序</a>
@@ -128,35 +128,41 @@
                 </div>
             </div>
 
-            <div class="content-item">
+            @if (Model.Items.Count > 0)
+            {
+                foreach (var item in Model.Items)
+                {
+                    <div class="content-item">
 
-                <div class="item-user clearfix">
-                    <a class="user-logo floatL"><img class="logo-show img40" src="~/Content/images/Login/bg-login.png" /></a>
-                    <div class="user-info floatL">
-                        <div class="info-name"><a class="name-show">devil-root</a></div>
-                        <div class="info-domain"><a class="domain-show">your honours</a></div>
+                        <div class="item-user clearfix">
+                            <a class="user-logo floatL"><img class="logo-show img40" src="~/Content/images/Login/bg-login.png" /></a>
+                            <div class="user-info floatL">
+                                <div class="info-name"><a class="name-show" data-uid="@(item.UserID)">@(item.UserName)</a></div>
+                                <div class="info-domain"><a class="domain-show">your honours</a></div>
+                            </div>
+                        </div>
+
+                        <div class="item-praise">
+                            <a class="praise-show">
+                                <span class="show-other">牛牛</span>
+                                <span class="show-text">等</span>
+                                <span class="show-count">@(item.PraiseCount)</span>
+                                <span class="show-last">人赞同了该回答</span>
+                            </a>
+                        </div>
+
+                        <div class="item-answer">
+                            <span class="answer-text">
+                               @(item.Content)
+                            </span>
+                        </div>
+                        <div class="item-date">
+                            <span class="date-text">发布于</span>
+                            <span class="date-show">@(item.EditTime.Value.ToString("yyyy-MM-dd HH:mm:ss"))</span>
+                        </div>
                     </div>
-                </div>
-
-                <div class="item-praise">
-                    <a class="praise-show">
-                        <span class="show-other">牛牛</span>
-                        <span class="show-text">等</span>
-                        <span class="show-count">60</span>
-                        <span class="show-last">人赞同了该回答</span>
-                    </a>
-                </div>
-
-                <div class="item-answer">
-                    <span class="answer-text">
-                        我还真没见过啊我还真没见过啊我还真没见过啊我还真没见过啊我还真没见过啊我还真没见过啊我还真没见过啊我还真没见过啊我还真没见过啊我还真没见过啊我还真没见过啊我还真没见过啊
-                    </span>
-                </div>
-                <div class="item-date">
-                    <span class="date-text">发布于</span>
-                    <span class="date-show">2018-08-28 13:00</span>
-                </div>
-            </div>
+                }
+            }
 
         </div>
 

@@ -104,7 +104,7 @@ namespace BBS2018.Web.Controllers
         {
             if (!questionId.HasValue) return HttpNotFound();
 
-            BBSQuestionVM quVM = new BBSQuestionService().GetQuestionByID(questionId.Value);
+            QuestionDetailVM quVM = new BBSQuestionService().GetQuestionByID(questionId.Value);
 
             if (quVM == null) return HttpNotFound();
 

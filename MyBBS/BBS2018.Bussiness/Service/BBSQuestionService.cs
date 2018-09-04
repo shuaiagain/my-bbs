@@ -108,22 +108,47 @@ namespace BBS2018.Bussiness.Service
 
             using (var dbContext = new DbContext().ConnectionStringName(ConnectionUtil.connBBS, new MySqlProvider()))
             {
-                BBSQuestionVM question = dbContext.Sql(@" select * from bbsquestion q where q.ID = @questionId ")
-                                          .Parameter("questionId", questionId)
-                                          .QuerySingle<BBSQuestionVM>();
+                QuestionDetailVM question = dbContext.Sql(@" select 
+	                                                            ID,	                                                            Title,
+	                                                            (select count(1) from bbsanswer a where a.QuestionID = q.ID )as AnswerCount
+                                                              from bbsquestion q where q.ID = @questionId ")
+                                                  .Parameter("questionId", questionId)
+                                                  .QuerySingle<QuestionDetailVM>((QuestionDetailVM vm, IDataReader reader) =>
+                                                  {
+                                                      vm.ID = reader.GetInt64("ID");
+                                                      vm.Title = reader.GetString("Title");
+                                                      vm.AnswerCount = Convert.ToInt32(reader["AnswerCount"]);
+                                                  });
 
                 if (question == null) return null;
 
                 //todo
-                List<QuestionItemVM> itemList = dbContext.Sql("").QueryMany<QuestionItemVM>();
-
-                QuestionDetailVM result = new QuestionDetailVM()
-                {
-                    ID = question.ID,
-                    Title = question.Title,
-                };
-
-                return result;
+                List<QuesitonDetailItem> itemList = dbContext.Sql(@"select 
+	                                                                    a.ID as AnswerID,
+	                                                                    a.Content,
+	                                                                    a.InputTime as EditTime,
+	                                                                    (select Count(1) from bbspraisetread p where p.BindTableID = a.ID and p.BindTableName = 'bbsanswer' and p.PraiseOrTread = 1)as PraiseCount,
+	                                                                    (select Count(1) from bbspraisetread p where p.BindTableID = a.ID and p.BindTableName = 'bbsanswer' and p.PraiseOrTread = 2)as TreadCount,
+	                                                                    u.ID as UserID,
+	                                                                    u.LoginName as UserName,
+	                                                                    u.HeadImageUrl as LogoUrl
+                                                                    from bbsanswer a join bbsuser u on a.UserID = u.ID
+                                                                    where a.QuestionID = @questionID ")
+                                                                    .Parameter("questionID", question.ID)
+                                                                    .QueryMany<QuesitonDetailItem>
+                                                                    ((QuesitonDetailItem vm, IDataReader reader) =>
+                                                                    {
+                                                                        vm.AnswerID = reader.GetInt64("AnswerID");
+                                                                        vm.Content = reader.GetString("Content");
+                                                                        vm.EditTime = reader.GetDateTime("EditTime");
+                                                                        vm.PraiseCount = Convert.ToInt32(reader["PraiseCount"]);
+                                                                        vm.TreadCount = Convert.ToInt32(reader["TreadCount"]);
+                                                                        vm.UserID = reader.GetInt32("UserID");
+                                                                        vm.UserName = reader.GetString("UserName");
+                                                                        vm.LogoUrl = reader.GetString("LogoUrl");
+                                                                    });
+                question.Items = itemList;
+                return question;
             }
         }
         #endregion
