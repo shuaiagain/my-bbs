@@ -111,21 +111,52 @@ a {
         line-height: 60px;
     }
 
-    .home-wrap .bar-user .user-logo {
+    .home-wrap .bar-user .user-logo, .user-show {
         display: inline-block;
         cursor: pointer;
-        width: 26px;
-        height: 26px;
-    }
-
-    .home-wrap .bar-user .logo-show {
+        height: 24px;
+        line-height: 24px;
         vertical-align: middle;
     }
 
-    .home-wrap .bar-user .user-name {
-        cursor: pointer;
-        display: inline-block;
+    .home-wrap .user-detail {
+        position: absolute;
+        background: #f3f3f3;
+        text-align: center;
+        width: 100px;
+        box-shadow: 1px 1px 1px #bbb;
+        -moz-box-shadow: 1px 1px 1px #bbb;
+        display: none;
     }
+
+        .home-wrap .user-detail:before {
+            content: "";
+            display: block;
+            position: absolute;
+            border-top: 18px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 10px solid #f3f3f3;
+            border-left: 10px solid transparent;
+            top: -28px;
+            left: 40px;
+        }
+
+        .home-wrap .user-detail .detail-item {
+            height: 36px;
+            line-height: 36px;
+            margin-top: 5px;
+        }
+
+            .home-wrap .user-detail .detail-item:hover {
+                background: #d3d3d3;
+                cursor: pointer;
+            }
+
+        .home-wrap .user-detail .home-mine, .logout {
+            display: inline-block;
+            width: 100%;
+            color: #8590a6;
+        }
 
     .home-wrap .bar-search .search-key {
         height: 28px;

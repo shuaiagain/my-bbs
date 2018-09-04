@@ -29,7 +29,7 @@ namespace BBS2018.Web
         {
             return false;
         }
-    } 
+    }
     #endregion
 
     #region MyFormsAuthentication
@@ -38,6 +38,8 @@ namespace BBS2018.Web
         public int? UserID { get; set; }
 
         public string UserName { get; set; }
+
+        public string LogoUrl { get; set; }
 
         public string Roles { get; set; }
 
@@ -108,7 +110,7 @@ namespace BBS2018.Web
             }
         }
         #endregion
-    } 
+    }
     #endregion
 
 }

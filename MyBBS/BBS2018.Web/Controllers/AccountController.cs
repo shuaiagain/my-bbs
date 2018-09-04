@@ -74,7 +74,6 @@ namespace BBS2018.Web.Controllers
         }
         #endregion
 
-
         #region Login
         [AuthFilter]
         public ActionResult Login()
@@ -133,5 +132,24 @@ namespace BBS2018.Web.Controllers
         }
         #endregion
 
+        #region 退出
+        /// <summary>
+        /// 退出
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult LogOut()
+        {
+            try
+            {
+                MyFormsAuthentication.SignOut();
+                return Redirect("~/Account/Login");
+            }
+            catch (Exception ex)
+            {
+                LogHelper.WriteLog(ex.Message);
+                throw ex;
+            }
+        }
+        #endregion
     }
 }

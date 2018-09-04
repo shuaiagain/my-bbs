@@ -1,5 +1,7 @@
-﻿@{
-    Layout = null;
+﻿@using BBS2018.Web;
+@{
+    MyFormPrincipal principal = this.User as MyFormPrincipal;
+    MyFormsAuthentication userData = principal == null ? new MyFormsAuthentication() : principal.UserData;
 }
 
 <!DOCTYPE html>
@@ -14,6 +16,7 @@
 
     <script type="text/javascript" src="~/Content/plugins/jquery-1.8.3.min.js"></script>
     <script type="text/javascript" src="~/Content/plugins/layer/layer.js"></script>
+    <script type="text/javascript" src="~/Content/js/layout.js"></script>
     @RenderSection("header", false)
 </head>
 <body>
@@ -30,7 +33,11 @@
                         <a class="user-logo">
                             <img class="logo-show img24" src="~/Content/images/Login/bg-login.png" />
                         </a>
-                        <a class="user-name">demon</a>
+                        <a class="user-show">@(userData.UserName)</a>
+                        <div class="user-detail">
+                            <div class="detail-home detail-item"><a class="home-mine">我的主页</a></div>
+                            <div class="detail-logout detail-item"><a class="logout" href="@Url.Action("LogOut","Account")">退出</a></div>
+                        </div>
                     </div>
                 </div>
             </div>
