@@ -25,6 +25,8 @@ namespace BBS2018.Web.Controllers
 
             if (!query.PageSize.HasValue) query.PageSize = 10;
             if (!query.PageIndex.HasValue) query.PageIndex = 1;
+            
+            query.UserID = this.UserData.UserID;
 
             try
             {

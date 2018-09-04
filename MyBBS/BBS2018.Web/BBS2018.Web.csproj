@@ -135,6 +135,7 @@
     <Content Include="Content\iconfont\iconfont.css" />
     <Content Include="Content\iconfont\iconfont.svg" />
     <Content Include="Content\images\Login\bg-login.png" />
+    <Content Include="Content\js\layout.js" />
     <Content Include="Content\js\question-detail.js" />
     <Content Include="Content\js\question.js" />
     <Content Include="Content\plugins\jquery-1.8.3.min.js" />

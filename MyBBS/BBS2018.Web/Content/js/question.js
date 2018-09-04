@@ -104,7 +104,8 @@
         // 赞/踩
         $('.vote-praise,.vote-tread').on('click', function () {
 
-            if (!isVoteBack) return;
+
+            if (!isVoteBack || $(this).hasClass('updown-active')) return;
             isVoteBack = false;
 
             var thisDom = this,
@@ -187,12 +188,12 @@
             if (data[i].Content) {
                 template += '<div class="content-operate clearfix" data-answerid="' + data[i].AnswerID + '">' +
                                 '<div class="vote floatL">' +
-                                    '<div class="vote-praise" data-type="1">' +
+                                    '<div class="vote-praise ' + (data[i].IsPraised > 0 ? "updown-active" : "") + '" data-type="1">' +
                                        '<a class="iconfont icon-arrowup"></a>' +
                                        '<a class="praise">赞同</a>' +
                                        '<a class="praise-num">' + data[i].TotalPraise + '</a>' +
                                     '</div>' +
-                                    '<div class="vote-tread" data-type="2">' +
+                                    '<div class="vote-tread ' + (data[i].IsTreaded > 0 ? "updown-active" : "") + '" data-type="2">' +
                                         '<a class="iconfont icon-arrowdown"></a>' +
                                     '</div>' +
                                 '</div>' +
@@ -206,12 +207,12 @@
                              '</div>' +
                         '</div>';
             } else {
+
                 template += '<div class="content-operate clearfix no-answer">不要着急，静等解惑</div>' +
                         '</div>';
             }
         }
         return template;
     }
-
 
 });

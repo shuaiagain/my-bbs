@@ -35,7 +35,15 @@ namespace BBS2018.Bussiness.Service
 				                                            ID as AnswerID,
 				                                            QuestionID,
 				                                            (select count(1) from bbspraisetread p where p.BindTableID = a.ID and p.BindTableName = 'bbsanswer' and p.PraiseOrTread = 1)as TotalPraise,
-				                                            (select count(1) from bbspraisetread p where p.BindTableID = a.ID and p.BindTableName = 'bbsanswer' and p.PraiseOrTread = 2)as TotalTread
+				                                            (select count(1) from bbspraisetread p where p.BindTableID = a.ID and p.BindTableName = 'bbsanswer' and p.PraiseOrTread = 2)as TotalTread,
+                                                            (
+			                                                    select count(*) from bbspraisetread p where p.BindTableID = a.ID and p.BindTableName = 'bbsanswer' and p.PraiseOrTread = 1 
+			                                                    and p.UserID = {0}
+		                                                     )as IsPraised,
+                                                             (
+			                                                    select count(*) from bbspraisetread p where p.BindTableID = a.ID and p.BindTableName = 'bbsanswer' and p.PraiseOrTread = 2 
+			                                                    and p.UserID = {0}
+		                                                     )as IsTreaded
 			                                            from bbsanswer a where QuestionID in (select ID from bbsquestion)
 			                                            ORDER BY TotalPraise DESC
 	                                            )x
@@ -43,23 +51,19 @@ namespace BBS2018.Bussiness.Service
                                             );
                                          
 	                                        select   
-	                                        q.ID as QuestionID,
-	                                        q.Title,
-                                            q.UserID,
-                                            q.UserName,
-	                                        a.ID as AnswerID,
-	                                        a.Content,
-	                                        t.TotalPraise,
-	                                        t.TotalTread
+	                                            q.ID as QuestionID,
+	                                            q.Title,
+                                                q.UserID,
+                                                q.UserName,
+	                                            a.ID as AnswerID,
+	                                            a.Content,
+	                                            t.TotalPraise,
+	                                            t.TotalTread,
+                                                t.IsPraised,
+                                                t.IsTreaded
 	                                        from bbsquestion q left join tempAnswer t on q.ID = t.QuestionID 
 	                                        left join bbsanswer a on t.AnswerID = a.ID 
-	                                        Where 1=1 ");
-
-                //if (!string.IsNullOrEmpty(query.KeyWord))
-                //{
-                //    sql += " AND q.Title Like '%'+@keyWord+'%' ";
-                //    paramList.Add(new SqlParameter("keyWord", query.KeyWord));
-                //}
+	                                        Where 1=1 ", query.UserID);
 
                 if (!string.IsNullOrEmpty(query.KeyWord))
                 {
@@ -79,6 +83,8 @@ namespace BBS2018.Bussiness.Service
                     vm.TotalTread = Convert.ToInt32(reader["TotalTread"]);
                     vm.UserID = Convert.ToInt32(reader["UserID"]);
                     vm.UserName = reader.GetString("UserName");
+                    vm.IsPraised = Convert.ToInt32(reader["IsPraised"]);
+                    vm.IsTreaded = Convert.ToInt32(reader["IsTreaded"]);
                 });
 
                 //总条数

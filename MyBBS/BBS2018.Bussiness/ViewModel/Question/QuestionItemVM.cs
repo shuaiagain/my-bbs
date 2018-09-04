@@ -51,5 +51,15 @@ namespace BBS2018.Bussiness.ViewModel
         /// 用户名
         /// </summary>
         public string UserName { get; set; }
+
+        /// <summary>
+        /// 是否赞过
+        /// </summary>
+        public int? IsPraised { get; set; }
+
+        /// <summary>
+        /// 是否踩过
+        /// </summary>
+        public int? IsTreaded { get; set; }
     }
 }
