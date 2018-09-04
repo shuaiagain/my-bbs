@@ -184,26 +184,31 @@
                           '</div>';
             }
 
-            template += '<div class="content-operate clearfix" data-answerid="' + data[i].AnswerID + '">' +
-                            '<div class="vote floatL">' +
-                                '<div class="vote-praise" data-type="1">' +
-                                   '<a class="iconfont icon-arrowup"></a>' +
-                                   '<a class="praise">赞同</a>' +
-                                   '<a class="praise-num">' + data[i].TotalPraise + '</a>' +
+            if (data[i].Content) {
+                template += '<div class="content-operate clearfix" data-answerid="' + data[i].AnswerID + '">' +
+                                '<div class="vote floatL">' +
+                                    '<div class="vote-praise" data-type="1">' +
+                                       '<a class="iconfont icon-arrowup"></a>' +
+                                       '<a class="praise">赞同</a>' +
+                                       '<a class="praise-num">' + data[i].TotalPraise + '</a>' +
+                                    '</div>' +
+                                    '<div class="vote-tread" data-type="2">' +
+                                        '<a class="iconfont icon-arrowdown"></a>' +
+                                    '</div>' +
                                 '</div>' +
-                                '<div class="vote-tread" data-type="2">' +
-                                    '<a class="iconfont icon-arrowdown"></a>' +
+                                '<div class="content-comment floatL">' +
+                                    '<div class="comment-wrap">' +
+                                       '<a class="iconfont icon-comment"></a>' +
+                                       '<a class="comment-num">0</a>' +
+                                       '<span class="comment-text">条评论</span>' +
+                                    '</div>' +
                                 '</div>' +
-                            '</div>' +
-                            '<div class="content-comment floatL">' +
-                                '<div class="comment-wrap">' +
-                                   '<a class="iconfont icon-comment"></a>' +
-                                   '<a class="comment-num">0</a>' +
-                                   '<span class="comment-text">条评论</span>' +
-                                '</div>' +
-                            '</div>' +
-                          '</div>' +
-                      '</div>';
+                             '</div>' +
+                        '</div>';
+            } else {
+                template += '<div class="content-operate clearfix no-answer">不要着急，静等解惑</div>' +
+                        '</div>';
+            }
         }
         return template;
     }

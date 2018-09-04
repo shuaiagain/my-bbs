@@ -79,3 +79,7 @@ textL {
     background: #0084ff !important;
     color: #fff !important;
 }
+
+.no-answer{
+    color:#979797;
+}
