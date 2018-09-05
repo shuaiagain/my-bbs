@@ -33,6 +33,11 @@ namespace BBS2018.Bussiness.ViewModel
         public string BindTableName { get; set; }
 
         /// <summary>
+        /// 评论内容
+        /// </summary>
+        public string Content { get; set; }
+
+        /// <summary>
         /// 录入时间
         /// </summary>
         public DateTime? InputTime { get; set; }

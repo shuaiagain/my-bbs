@@ -1,7 +1,6 @@
 ﻿$(function () {
 
     getQuestionList();
-    bindEvent();
 
     //查询
     $('.btn-search').on('click', function (e) {
@@ -9,6 +8,7 @@
         getQuestionList($.trim($('.search-key ').val()), 1);
     });
 
+    //查询
     $('.search-key ').on('keydown', function (e) {
 
         if (e.keyCode == 13) {
@@ -135,8 +135,6 @@
             });
 
         });
-
-
     }
 
     //渲染列表html

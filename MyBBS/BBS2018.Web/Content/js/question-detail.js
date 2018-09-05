@@ -2,6 +2,7 @@
 
     getQAnswerPageList();
 
+    //写回答
     $('.write-an').on('click', function (e) {
 
         var writeUrl = $('input[name="writeAnswerUrl"]').val();
@@ -32,7 +33,8 @@
                         data: JSON.stringify({ Content: $('.an-content').val(), QuestionID: $('input[name="questionId"]').val() }),
                         contentType: 'application/json;charset=utf-8',
                         success: function (data) {
-
+                            debugger;
+                            getQAnswerPageList();
                             layer.close(index);
                         }
                     });
@@ -44,6 +46,7 @@
         });
     });
 
+    //获取回答列表
     function getQAnswerPageList(pageIndex, pageSize) {
 
         var getQuesUrl = $('input[name="getQAnswerUrl"]').val();
@@ -67,11 +70,14 @@
                 }
 
                 var result = data.Data;
-                $('.detail-content').append(renderHtml(result.Data));
+                $('.content-list').html(renderHtml(result.Data));
+
+                bindEvent();
             }
         });
     }
 
+    //渲染列表html
     function renderHtml(data) {
 
         if (!data) return '';
@@ -127,4 +133,65 @@
         return template;
     }
 
+    //绑定事件
+    function bindEvent() {
+
+        var isVoteBack = true;
+        // 赞/踩
+        $('.vote-praise,.vote-tread').on('click', function () {
+
+            if (!isVoteBack || $(this).hasClass('updown-active')) return;
+            isVoteBack = false;
+
+            var thisDom = this,
+                 operate = $(this).parents('.content-operate'),
+                 saveUrl = $('input[name="savePraiseTreadUrl"]').val();
+
+            $.ajax({
+                type: 'post',
+                url: saveUrl,
+                data: JSON.stringify({
+                    'BindTableID': operate.data('answerid'),
+                    'BindTableName': 'bbsanswer',
+                    'PraiseOrTread': $(this).data('type')
+                }),
+                contentType: 'application/json;charset=utf-8',
+                success: function (data) {
+                    isVoteBack = true;
+
+                    if (data.Code < 0) {
+                        return false;
+                    }
+
+                    $(thisDom).parents('.vote ').find('.vote-praise,.vote-tread').removeClass('updown-active');
+                    $(thisDom).addClass('updown-active');
+
+                    $(thisDom).parents('.vote').find('.praise-num').text(data.Data.Count);
+                }
+            });
+
+        });
+
+        //点击评论
+        $('.content-comment').on('click', function (e) {
+
+            var thisDom = this;
+            if ($('.sub-comment').length == 1) {
+
+                $('.sub-comment').remove();
+                $(thisDom).find('.comment-num').show();
+                $(thisDom).find('.comment-text').text('条评论');
+                return;
+            }
+
+            var commentListUrl = $('input[name="commentListUrl"]').val() + '?answerId=' + $('input[name="questionId"]').val();
+            $.get(commentListUrl, function (data) {
+            
+                $(thisDom).find('.comment-num').hide();
+                $(thisDom).find('.comment-text').text('收起评论');
+               
+                $(data).insertAfter($(thisDom).parents('.content-item'));
+            });
+        });
+    }
 });

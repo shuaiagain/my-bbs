@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\EnumList.cs" />
+    <Compile Include="Query\CommentQuery.cs" />
     <Compile Include="Query\PageQuery.cs" />
     <Compile Include="Query\Query.cs" />
     <Compile Include="Query\QuestionQuery.cs" />
