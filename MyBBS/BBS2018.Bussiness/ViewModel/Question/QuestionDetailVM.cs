@@ -25,6 +25,6 @@ namespace BBS2018.Bussiness.ViewModel
         /// <summary>
         /// 问题的回答
         /// </summary>
-        public List<QuesitonDetailItem> Items { get; set; }
+        public List<QuesitonDetailItemVM> Items { get; set; }
     }
 }

@@ -114,18 +114,25 @@ namespace BBS2018.Web.Controllers
         }
         #endregion
 
-        #region getAnswerPageList
-        public ActionResult getAnswerPageList(int? questionId)
+        #region getQAnswerPageList
+        /// <summary>
+        /// 获取问题答案列表
+        /// </summary>
+        /// <param name="query"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult GetQAnswerPageList(QuestionQuery query)
         {
 
-            if (!questionId.HasValue) return Json(new
+            if (query == null) query = new QuestionQuery();
+            if (!query.QuestionID.HasValue) return Json(new
                      {
                          Code = -400,
                          Msg = "参数不能为空",
                          Data = ""
                      });
 
-            QuestionDetailVM quVM = new BBSQuestionService().GetQuestionByID(questionId.Value);
+            PageVM<QuesitonDetailItemVM> quVM = new BBSQuestionService().GetQAnswerPageList(query);
 
             if (quVM == null) return Json(new
             {

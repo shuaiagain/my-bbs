@@ -92,10 +92,12 @@ namespace BBS2018.Bussiness.Service
                 //总页数
                 int totalPages = (int)Math.Ceiling(((double)totalCount / query.PageSize.Value));
 
-                PageVM<QuestionItemVM> pageData = new PageVM<QuestionItemVM>();
-                pageData.TotalCount = totalCount;
-                pageData.TotalPages = totalPages;
-                pageData.Data = quList;
+                PageVM<QuestionItemVM> pageData = new PageVM<QuestionItemVM>()
+                {
+                    TotalCount = totalPages,
+                    TotalPages = totalPages,
+                    Data = quList
+                };
 
                 return pageData;
             }
@@ -130,7 +132,7 @@ namespace BBS2018.Bussiness.Service
                 if (question == null) return null;
 
                 //todo
-                List<QuesitonDetailItem> itemList = dbContext.Sql(@"select 
+                List<QuesitonDetailItemVM> itemList = dbContext.Sql(@"select 
 	                                                                    a.ID as AnswerID,
 	                                                                    a.Content,
 	                                                                    a.InputTime as EditTime,
@@ -142,8 +144,8 @@ namespace BBS2018.Bussiness.Service
                                                                     from bbsanswer a join bbsuser u on a.UserID = u.ID
                                                                     where a.QuestionID = @questionID ")
                                                                     .Parameter("questionID", question.ID)
-                                                                    .QueryMany<QuesitonDetailItem>
-                                                                    ((QuesitonDetailItem vm, IDataReader reader) =>
+                                                                    .QueryMany<QuesitonDetailItemVM>
+                                                                    ((QuesitonDetailItemVM vm, IDataReader reader) =>
                                                                     {
                                                                         vm.AnswerID = reader.GetInt64("AnswerID");
                                                                         vm.Content = reader.GetString("Content");
@@ -161,49 +163,65 @@ namespace BBS2018.Bussiness.Service
         }
         #endregion
 
-        public PageVM<QuesitonDetailItem> GetAnswerPageList(int questionId)
+        #region 获取问题详细页列表
+        public PageVM<QuesitonDetailItemVM> GetQAnswerPageList(QuestionQuery query)
         {
 
-            if (questionId == 0) return null;
+            if (!query.QuestionID.HasValue) return null;
+
+            if (!query.PageSize.HasValue) query.PageSize = 10;
+
+            if (!query.PageIndex.HasValue) query.PageIndex = 1;
+
+            string sql = string.Format(@"select 
+	                                        a.ID as AnswerID,
+	                                        a.Content,
+	                                        a.InputTime as EditTime,
+	                                        (select Count(1) from bbspraisetread p where p.BindTableID = a.ID and p.BindTableName = 'bbsanswer' and p.PraiseOrTread = 1)as PraiseCount,
+	                                        (select Count(1) from bbspraisetread p where p.BindTableID = a.ID and p.BindTableName = 'bbsanswer' and p.PraiseOrTread = 2)as TreadCount,
+	                                        u.ID as UserID,
+	                                        u.LoginName as UserName,
+	                                        u.HeadImageUrl as LogoUrl
+                                         from bbsanswer a join bbsuser u on a.UserID = u.ID
+                                         where a.QuestionID = {0} ", query.QuestionID);
+
+            string sqlPage = string.Format(" Limit {0},{1}", query.PageSize * (query.PageIndex - 1), query.PageSize);
 
             using (var dbContext = new DbContext().ConnectionStringName(ConnectionUtil.connBBS, new MySqlProvider()))
             {
 
-                List<QuesitonDetailItem> itemList = dbContext.Sql(@"select 
-	                                                                    a.ID as AnswerID,
-	                                                                    a.Content,
-	                                                                    a.InputTime as EditTime,
-	                                                                    (select Count(1) from bbspraisetread p where p.BindTableID = a.ID and p.BindTableName = 'bbsanswer' and p.PraiseOrTread = 1)as PraiseCount,
-	                                                                    (select Count(1) from bbspraisetread p where p.BindTableID = a.ID and p.BindTableName = 'bbsanswer' and p.PraiseOrTread = 2)as TreadCount,
-	                                                                    u.ID as UserID,
-	                                                                    u.LoginName as UserName,
-	                                                                    u.HeadImageUrl as LogoUrl
-                                                                    from bbsanswer a join bbsuser u on a.UserID = u.ID
-                                                                    where a.QuestionID = @questionID ")
-                                                                   .Parameter("questionID", questionId)
-                                                                   .QueryMany<QuesitonDetailItem>
-                                                                   ((QuesitonDetailItem vm, IDataReader reader) =>
-                                                                   {
-                                                                       vm.AnswerID = reader.GetInt64("AnswerID");
-                                                                       vm.Content = reader.GetString("Content");
-                                                                       vm.EditTime = reader.GetDateTime("EditTime");
-                                                                       vm.PraiseCount = Convert.ToInt32(reader["PraiseCount"]);
-                                                                       vm.TreadCount = Convert.ToInt32(reader["TreadCount"]);
-                                                                       vm.UserID = reader.GetInt32("UserID");
-                                                                       vm.UserName = reader.GetString("UserName");
-                                                                       vm.LogoUrl = reader.GetString("LogoUrl");
-                                                                   });
+                List<QuesitonDetailItemVM> itemList = dbContext.Sql(sql)
+                                                               .QueryMany<QuesitonDetailItemVM>
+                                                               ((QuesitonDetailItemVM vm, IDataReader reader) =>
+                                                               {
+                                                                   vm.AnswerID = reader.GetInt64("AnswerID");
+                                                                   vm.Content = reader.GetString("Content");
+                                                                   vm.EditTime = reader.GetDateTime("EditTime");
+                                                                   vm.PraiseCount = Convert.ToInt32(reader["PraiseCount"]);
+                                                                   vm.TreadCount = Convert.ToInt32(reader["TreadCount"]);
+                                                                   vm.UserID = reader.GetInt32("UserID");
+                                                                   vm.UserName = reader.GetString("UserName");
+                                                                   vm.LogoUrl = reader.GetString("LogoUrl");
+                                                               });
 
-                PageVM<QuesitonDetailItem> pageList = new PageVM<QuesitonDetailItem>()
+                if (itemList == null || itemList.Count == 0) return null;
+
+                //总条数
+                int totalCount = dbContext.Sql(sql).QueryMany<int>().Count;
+                //总页数
+                int totalPages = (int)Math.Ceiling(((double)totalCount / query.PageSize.Value));
+
+                PageVM<QuesitonDetailItemVM> pageVM = new PageVM<QuesitonDetailItemVM>()
                 {
-                    Data = itemList
+                    Data = itemList,
+                    TotalCount = totalCount,
+                    TotalPages = totalPages
                 };
 
-                if (itemList == null || itemList.Data == null || itemList.Data.Count == 0) return null;
-
-                return itemList;
+                return pageVM;
             }
         }
+        #endregion
 
         #region 保存问题
         /// <summary>

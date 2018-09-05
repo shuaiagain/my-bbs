@@ -30,11 +30,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FluentData">
-      <HintPath>..\DLL\FluentData.dll</HintPath>
+    <Reference Include="FluentData, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\orm-fluentdata\FluentData\sourceCode\sourceCode\Source\v4\FluentData\bin\Debug\FluentData.dll</HintPath>
     </Reference>
     <Reference Include="MySql.Data">
-      <HintPath>..\DLL\MySql.Data.dll</HintPath>
+      <HintPath>..\DLL\MySql.Data.6.9.12\lib\net40\MySql.Data.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -68,7 +69,7 @@
     <Compile Include="ViewModel\BBSPraiseTread\BBSPraiseTreadVM.cs" />
     <Compile Include="ViewModel\Common\PageVM.cs" />
     <Compile Include="ViewModel\Question\BBSQuestionVM.cs" />
-    <Compile Include="ViewModel\Question\QuesitonDetailItem.cs" />
+    <Compile Include="ViewModel\Question\QuesitonDetailItemVM.cs" />
     <Compile Include="ViewModel\Question\QuestionDetailVM.cs" />
     <Compile Include="ViewModel\Question\QuestionItemVM.cs" />
     <Compile Include="ViewModel\User\BBSRoleVM.cs" />

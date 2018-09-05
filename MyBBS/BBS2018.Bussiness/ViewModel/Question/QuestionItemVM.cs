@@ -20,7 +20,7 @@ namespace BBS2018.Bussiness.ViewModel
         /// <summary>
         /// 问题的回答
         /// </summary>
-        //List<QuesitonDetailItem> Items { get; set; }
+        //List<QuesitonDetailItemVM> Items { get; set; }
 
         /// <summary>
         /// 回答ID

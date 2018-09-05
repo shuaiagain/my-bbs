@@ -1,5 +1,7 @@
 ﻿$(function () {
 
+    getQAnswerPageList();
+
     $('.write-an').on('click', function (e) {
 
         var writeUrl = $('input[name="writeAnswerUrl"]').val();
@@ -42,13 +44,15 @@
         });
     });
 
-    function getAnswerList() {
+    function getQAnswerPageList(pageIndex, pageSize) {
 
-        var getQuesUrl = $('input[name="getQuesUrl"]').val();
+        var getQuesUrl = $('input[name="getQAnswerUrl"]').val();
+        var questionId = $('input[name="questionId"]').val();
+
         var arguments = {
             PageIndex: pageIndex ? 1 : pageIndex,
             PageSize: pageSize ? 10 : pageSize,
-            KeyWord: keyWord
+            QuestionID: questionId
         };
 
         $.ajax({
@@ -59,16 +63,68 @@
             success: function (data) {
 
                 if (data.Code == -200) {
-                    $('.main-content').html(renderHtml());
                     return;
                 }
 
                 var result = data.Data;
-                $('.main-content').html(renderHtml(result.Data));
-                bindEvent();
+                $('.detail-content').append(renderHtml(result.Data));
             }
         });
     }
 
+    function renderHtml(data) {
+
+        if (!data) return '';
+
+        var template = '';
+        for (var i = 0; i < data.length; i++) {
+
+            template += '<div class="content-item">' +
+                             '<div class="item-user clearfix">' +
+                                 '<a class="user-logo floatL"><img class="logo-show img40" src="/Content/images/Login/bg-login.png" /></a>' +
+                                 '<div class="user-info floatL">' +
+                                     '<div class="info-name"><a class="name-show" data-uid="' + data[i].UserID + '">' + data[i].UserName + '</a></div>' +
+                                     '<div class="info-domain"><a class="domain-show">your honours</a></div>' +
+                                 '</div>' +
+                             '</div>' +
+                             '<div class="item-praise">' +
+                                 '<a class="praise-show">' +
+                                     '<span class="show-other">牛牛</span>' +
+                                     '<span class="show-text">等</span>' +
+                                     '<span class="show-count">' + data[i].PraiseCount + '</span>' +
+                                     '<span class="show-last">人赞同了该回答</span>' +
+                                 '</a>' +
+                             '</div>' +
+                             '<div class="item-answer">' +
+                                 '<span class="answer-text">' + data[i].Content + '</span>' +
+                             '</div>' +
+                             '<div class="item-date">' +
+                                 '<span class="date-text">发布于</span>' +
+                                 '<span class="date-show">' + data[i].EditTimeStr + '</span>' +
+                             '</div>' +
+                             '<div class="content-operate clearfix" data-answerid="' + data[i].AnswerID + '">' +
+                                 '<div class="vote floatL">' +
+                                     '<div class="vote-praise updown-active" data-type="1">' +
+                                         '<a class="iconfont icon-arrowup"></a>' +
+                                         '<a class="praise">赞同</a>' +
+                                         '<a class="praise-num">' + data[i].PraiseCount + '</a>' +
+                                     '</div>' +
+                                     '<div class="vote-tread " data-type="2">' +
+                                         '<a class="iconfont icon-arrowdown"></a>' +
+                                     '</div>' +
+                                 '</div>' +
+                                 '<div class="content-comment floatL">' +
+                                     '<div class="comment-wrap">' +
+                                         '<a class="iconfont icon-comment"></a>' +
+                                         '<a class="comment-num">0</a>' +
+                                         '<span class="comment-text">条评论</span>' +
+                                     '</div>' +
+                                 '</div>' +
+                             '</div>' +
+                        '</div>';
+        }
+
+        return template;
+    }
 
 });

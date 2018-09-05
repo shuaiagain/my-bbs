@@ -128,7 +128,7 @@
                 </div>
             </div>
 
-            @if (Model.Items.Count > 0)
+            @*@if (Model.Items.Count > 0)
             {
                 foreach (var item in Model.Items)
                 {
@@ -176,7 +176,7 @@
                         </div>
                     </div>
                 }
-            }
+            }*@
 
         </div>
 
@@ -185,7 +185,7 @@
 <input type="hidden" name="writeAnswerUrl" value="@(Url.Action("WriteAnswer", "Answer"))" />
 <input type="hidden" name="saveAnswerUrl" value="@(Url.Action("SaveAnswer", "Answer"))" />
 <input type="hidden" name="questionId" value="@(Model.ID)" />
-<input type="hidden" name="getAnswerUrl" value="@(Url.Action("","Question"))"/>
+<input type="hidden" name="getQAnswerUrl" value="@(Url.Action("GetQAnswerPageList", "Question"))"/>
 @section footer{
     <script type="text/javascript" src="~/Content/js/question-detail.js"></script>
 }

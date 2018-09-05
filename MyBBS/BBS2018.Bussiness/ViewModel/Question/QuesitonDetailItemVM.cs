@@ -5,7 +5,7 @@ using System.Text;
 
 namespace BBS2018.Bussiness.ViewModel
 {
-    public class QuesitonDetailItem
+    public class QuesitonDetailItemVM
     {
         /// <summary>
         /// 回答者名称
@@ -36,6 +36,19 @@ namespace BBS2018.Bussiness.ViewModel
         /// 回答日期
         /// </summary>
         public DateTime? EditTime { get; set; }
+
+        /// <summary>
+        /// 回答日期
+        /// </summary>
+        public string EditTimeStr
+        {
+            get
+            {
+                if (!this.EditTime.HasValue) return string.Empty;
+
+                return EditTime.Value.ToString("yyyy-MM-dd HH:mm:ss");
+            }
+        }
 
         /// <summary>
         /// 最后一个赞的人的名称
