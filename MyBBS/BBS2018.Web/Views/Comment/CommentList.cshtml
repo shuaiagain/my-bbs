@@ -1,5 +1,6 @@
 ﻿@{
     ViewBag.Title = "CommentList";
+    long answerId = ViewBag.AnswerID;
 }
 
 
@@ -75,54 +76,150 @@
             height: 40px;
             line-height: 40px;
         }
+
+        .sub-comment .reply-con {
+            padding-left: 20px;
+            margin-bottom: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #ebebeb;
+        }
+
+            .sub-comment .reply-con .reply-value {
+                width: 650px;
+                height: 28px;
+                line-height: 28px;
+                padding: 0px 5px;
+                outline: none;
+            }
+
+            .sub-comment .reply-con .con-btn {
+                width: 46px;
+                height: 30px;
+                line-height: 28px;
+                display: inline-block;
+                background: #0084ff;
+                text-align: center;
+                color: #fff;
+            }
 </style>
 <div class="sub-comment">
 
     <div class="comment-wrap">
         <div class="comment-head clearfix">
             <div class="head-left floatL">
-                <span class="comment-total">11</span><span class="total-text">条评论</span>
+                <span class="comment-total">0</span><span class="total-text">条评论</span>
             </div>
             <div class="head-right floatR"><a>时间排序</a></div>
         </div>
-
-        <div class="comment-con">
-            <div class="con-item">
-                <div class="item-user clearfix">
-                    <div class="user-info floatL">
-                        <a class="info-logo"><img class="img24 logo-show" src="~/Content/images/Login/bg-login.png" /></a>
-                        <span>用户名</span>
-                    </div>
-                    <div class="user-date floatR">
-                        <span class="date-show">2018-09-05</span>
-                    </div>
-                </div>
-                <div class="item-content">评论内容</div>
-                <div class="item-opt">
-                    <a class="iconfont icon-zan">赞</a>
-                    <a class="iconfont icon-cai">踩</a>
-                    <div class="opt-reply">
-                        <a class="iconfont icon-reply">回复</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div class="comment-con"></div>
         <div class="comment-footer">
             <div class="footer-page">分页</div>
         </div>
         <div class="comment-reply">
             <div class="reply-con">
-                <textarea class="con-text"></textarea>
+                <input type="text" name="reply-value" class="reply-value" placeholder="写下你的评论..." />
                 <a class="con-btn">回复</a>
+                <span class="warning con-tips"></span>
             </div>
         </div>
     </div>
 </div>
-
+<input type="hidden" name="answerId" value="@(answerId)" />
+<input type="hidden" name="getCommentsUrl" value="@(Url.Action("GetComments", "Comment"))" />
+<input type="hidden" name="saveCommentUrl" value="@(Url.Action("SaveComment", "Comment"))" />
 <script type="text/javascript">
     $(function () {
 
+        var _answerId = $('input[name="answerId"]').val();
+        getComments();
 
+        //保存评论
+        $('.con-btn').on('click', function (e) {
+
+            var content = $('input[name="reply-value"]').val();
+            if ($.trim(content) == '') {
+                $('.con-tips').text('请输入评论内容');
+                return;
+            }
+
+            saveComment(_answerId, 'bbsanswer', content);
+        });
+
+        //提示隐藏
+        $('.reply-value').on('focus', function () {
+            $('.con-tips').text('');
+        });
+
+        //保存评论
+        function saveComment(bindTableID, bindTableName, content) {
+
+
+            var saveCommentUrl = $('input[name="saveCommentUrl"]').val()
+            $.ajax({
+                type: 'post',
+                url: saveCommentUrl,
+                data: JSON.stringify({
+                    'BindTableID': bindTableID,
+                    'BindTableName': bindTableName,
+                    'Content': content
+                }),
+                contentType: 'application/json;charset=utf-8',
+                success: function (data) {
+
+                    if (data.Code < 0) return;
+
+                    getComments();
+                }
+            });
+        }
+
+        //获取评论列表
+        function getComments() {
+
+            var getCommentsUrl = $('input[name="getCommentsUrl"]').val();
+            $.ajax({
+                type: 'post',
+                url: getCommentsUrl,
+                data: JSON.stringify({ 'AnswerID': _answerId }),
+                contentType: 'application/json;charset=utf-8',
+                success: function (data) {
+
+                    if (data.Code < 0) return;
+                    var result = data.Data;
+                    var tempHtml = renderHtml(result.Data);
+                    $('.comment-con').html(tempHtml);
+                }
+            });
+        }
+
+        //渲染数据
+        function renderHtml(data) {
+
+            var template = '';
+            for (var i = 0; i < data.length; i++) {
+                template += '<div class="con-item" data-commentid="' + data[i].ID + '">' +
+                                '<div class="item-user clearfix">' +
+                                    '<div class="user-info floatL">' +
+                                        '<a class="info-logo"><img class="img24 logo-show" src="/Content/images/Login/bg-login.png" /></a>' +
+                                        '<span>' + data[i].UserName + '</span>' +
+                                    '</div>' +
+                                    '<div class="user-date floatR">' +
+                                        '<span class="date-show">' + data[i].InputTimeStr + '</span>' +
+                                    '</div>' +
+                                '</div>' +
+                                '<div class="item-content">' + data[i].Content + '</div>' +
+                                '<div class="item-opt">' +
+                                   '<a class="iconfont icon-zan">赞</a>' +
+                                   '<a class="iconfont icon-cai">踩</a>' +
+                                   '<div class="opt-reply">' +
+                                        '<a class="iconfont icon-reply">回复</a>' +
+                                   '</div>' +
+                                '</div>' +
+                            '</div>';
+            }
+
+            return template;
+        }
 
     });
 </script>

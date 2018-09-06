@@ -85,7 +85,7 @@
         var template = '';
         for (var i = 0; i < data.length; i++) {
 
-            template += '<div class="content-item">' +
+            template += '<div class="content-item" data-answerid="' + data[i].AnswerID + '">' +
                              '<div class="item-user clearfix">' +
                                  '<a class="user-logo floatL"><img class="logo-show img40" src="/Content/images/Login/bg-login.png" /></a>' +
                                  '<div class="user-info floatL">' +
@@ -108,9 +108,9 @@
                                  '<span class="date-text">发布于</span>' +
                                  '<span class="date-show">' + data[i].EditTimeStr + '</span>' +
                              '</div>' +
-                             '<div class="content-operate clearfix" data-answerid="' + data[i].AnswerID + '">' +
+                             '<div class="content-operate clearfix"s>' +
                                  '<div class="vote floatL">' +
-                                     '<div class="vote-praise updown-active" data-type="1">' +
+                                     '<div class="vote-praise" data-type="1">' +
                                          '<a class="iconfont icon-arrowup"></a>' +
                                          '<a class="praise">赞同</a>' +
                                          '<a class="praise-num">' + data[i].PraiseCount + '</a>' +
@@ -144,7 +144,7 @@
             isVoteBack = false;
 
             var thisDom = this,
-                 operate = $(this).parents('.content-operate'),
+                 operate = $(this).parents('.content-item'),
                  saveUrl = $('input[name="savePraiseTreadUrl"]').val();
 
             $.ajax({
@@ -184,12 +184,12 @@
                 return;
             }
 
-            var commentListUrl = $('input[name="commentListUrl"]').val() + '?answerId=' + $('input[name="questionId"]').val();
+            var commentListUrl = $('input[name="commentListUrl"]').val() + '?answerId=' + $(thisDom).parents('.content-item').data('answerid');
             $.get(commentListUrl, function (data) {
-            
+
                 $(thisDom).find('.comment-num').hide();
                 $(thisDom).find('.comment-text').text('收起评论');
-               
+
                 $(data).insertAfter($(thisDom).parents('.content-item'));
             });
         });

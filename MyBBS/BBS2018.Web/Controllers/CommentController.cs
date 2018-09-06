@@ -12,6 +12,16 @@ namespace BBS2018.Web.Controllers
     public class CommentController : BaseController
     {
 
+        #region GetCommentList
+        public ActionResult GetCommentList(long answerId)
+        {
+            if (answerId == 0) return HttpNotFound();
+
+            ViewBag.AnswerID = answerId;
+            return View("CommentList");
+        }
+        #endregion
+
         #region 获取评论
         /// <summary>
         /// 获取评论
@@ -49,11 +59,32 @@ namespace BBS2018.Web.Controllers
         }
         #endregion
 
-
-        public ActionResult GetCommentList(long answerId)
+        #region SaveComment
+        [HttpPost]
+        public ActionResult SaveComment(BBSCommentVM vm)
         {
-            if (answerId == 0) return HttpNotFound();
-            return View("CommentList");
+
+            if (vm == null || string.IsNullOrEmpty(vm.BindTableName) || !vm.BindTableID.HasValue)
+                return Json(new
+            {
+                Code = -400,
+                Msg = "参数不能为空",
+                Data = ""
+            });
+
+            vm.UserName = this.UserData.UserName;
+            vm.UserID = this.UserData.UserID;
+            vm.InputTime = DateTime.Now;
+            vm = new BBSCommentService().SaveComment(vm);
+
+            return Json(new
+            {
+                Code = 200,
+                Msg = "保存成功",
+                Data = vm
+            });
         }
+        #endregion
+
     }
 }

@@ -41,5 +41,17 @@ namespace BBS2018.Bussiness.ViewModel
         /// 录入时间
         /// </summary>
         public DateTime? InputTime { get; set; }
+
+        #region 扩展字段
+
+        public string InputTimeStr
+        {
+            get
+            {
+                if (!this.InputTime.HasValue) return string.Empty;
+                return this.InputTime.Value.ToString("yyyy-MM-dd HH:mm:ss");
+            }
+        }
+        #endregion
     }
 }
