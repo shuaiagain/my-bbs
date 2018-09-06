@@ -181,12 +181,20 @@ namespace BBS2018.Bussiness.Service
 		                                        a.InputTime as EditTime,
 		                                        (select Count(1) from bbspraisetread p where p.BindTableID = a.ID and p.BindTableName = 'bbsanswer' and p.PraiseOrTread = 1)as PraiseCount,
 		                                        (select Count(1) from bbspraisetread p where p.BindTableID = a.ID and p.BindTableName = 'bbsanswer' and p.PraiseOrTread = 2)as TreadCount,
+                                                (
+			                                        select count(*) from bbspraisetread p where  p.BindTableID = a.ID and p.BindTableName = 'bbsanswer' and p.PraiseOrTread = 1 
+			                                        and p.UserID = {1}
+		                                        )as IsPraised,
+		                                        (
+			                                        select count(*) from bbspraisetread p where  p.BindTableID = a.ID and p.BindTableName = 'bbsanswer' and p.PraiseOrTread = 2 
+			                                        and p.UserID = {1} 
+		                                        )as IsTreaded,
 		                                        u.ID as UserID,
 		                                        u.LoginName as UserName,
 		                                        u.HeadImageUrl as LogoUrl
 	                                        from bbsanswer a join bbsuser u on a.UserID = u.ID
 	                                        where a.QuestionID = {0}
-                                        )x  ", query.QuestionID);
+                                        )x  ", query.QuestionID, query.UserID);
             sql += " ORDER BY x.EditTime desc ,x.PraiseCount desc ";
 
             string sqlPage = string.Format(" Limit {0},{1}", query.PageSize * (query.PageIndex - 1), query.PageSize);
