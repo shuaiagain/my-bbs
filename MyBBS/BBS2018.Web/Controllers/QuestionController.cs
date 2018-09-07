@@ -132,6 +132,7 @@ namespace BBS2018.Web.Controllers
                          Data = ""
                      });
 
+            query.UserID = this.UserData.UserID;
             PageVM<QuesitonDetailItemVM> quVM = new BBSQuestionService().GetQAnswerPageList(query);
 
             if (quVM == null) return Json(new

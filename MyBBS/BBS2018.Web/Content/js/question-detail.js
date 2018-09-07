@@ -110,12 +110,12 @@
                              '</div>' +
                              '<div class="content-operate clearfix"s>' +
                                  '<div class="vote floatL">' +
-                                     '<div class="vote-praise" data-type="1">' +
+                                     '<div class="vote-praise  ' + (data[i].IsPraised > 0 ? "updown-active" : "") + '" data-type="1">' +
                                          '<a class="iconfont icon-arrowup"></a>' +
                                          '<a class="praise">赞同</a>' +
                                          '<a class="praise-num">' + data[i].PraiseCount + '</a>' +
                                      '</div>' +
-                                     '<div class="vote-tread " data-type="2">' +
+                                     '<div class="vote-tread ' + (data[i].IsTreaded > 0 ? "updown-active" : "") + ' " data-type="2">' +
                                          '<a class="iconfont icon-arrowdown"></a>' +
                                      '</div>' +
                                  '</div>' +
@@ -174,23 +174,30 @@
 
         //点击评论
         $('.content-comment').on('click', function (e) {
-
+           
             var thisDom = this;
-            if ($('.sub-comment').length == 1) {
+            $(thisDom).parents('.content-item').siblings().each(function (i, val) {
 
-                $('.sub-comment').remove();
+                if ($(val).find('.sub-comment').length == 1)
+                    $(val).find('.sub-comment').remove();
+            });
+
+            if ($(thisDom).parents('.content-item').find('.sub-comment').length == 1) {
+
+                $(thisDom).parents('.content-item').find('.sub-comment').remove();
                 $(thisDom).find('.comment-num').show();
                 $(thisDom).find('.comment-text').text('条评论');
                 return;
             }
-
+         
             var commentListUrl = $('input[name="commentListUrl"]').val() + '?answerId=' + $(thisDom).parents('.content-item').data('answerid');
             $.get(commentListUrl, function (data) {
 
                 $(thisDom).find('.comment-num').hide();
                 $(thisDom).find('.comment-text').text('收起评论');
 
-                $(data).insertAfter($(thisDom).parents('.content-item'));
+                //$(data).insertAfter($(thisDom).parents('.content-item'));
+                $(data).appendTo($(thisDom).parents('.content-item'));
             });
         });
     }

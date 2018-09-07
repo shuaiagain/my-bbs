@@ -3,105 +3,6 @@
     long answerId = ViewBag.AnswerID;
 }
 
-
-<style type="text/css">
-    .sub-comment {
-        background: #fff;
-    }
-
-        .sub-comment .comment-wrap {
-            border: 1px solid #ebebeb;
-            box-shadow: 1px 1px 1px #ebebeb;
-            margin: 0px 15px;
-        }
-
-            .sub-comment .comment-wrap .comment-head, .comment-con, .comment-footer {
-                padding: 10px 20px;
-            }
-
-        .sub-comment .comment-head {
-            height: 40px;
-            line-height: 40px;
-            border-bottom: 1px solid #ebebeb;
-        }
-
-            .sub-comment .comment-head .head-left {
-                font-weight: 700;
-            }
-
-                .sub-comment .comment-head .head-left .comment-total {
-                    margin-right: 5px;
-                }
-
-            .sub-comment .comment-head .head-right {
-                color: #8590a6;
-            }
-
-        .sub-comment .comment-con .info-logo {
-            height: 24px;
-            width: 24px;
-            line-height: 24px;
-            display: inline-block;
-            vertical-align: middle;
-        }
-
-        .sub-comment .comment-con .user-info, .user-date {
-            height: 40px;
-            line-height: 40px;
-        }
-
-        .sub-comment .comment-con .logo-show {
-            vertical-align: sub;
-        }
-
-        .sub-comment .comment-con .item-content {
-            margin: 10px 0px;
-        }
-
-        .sub-comment .comment-con .icon-zan, .icon-cai, .icon-reply {
-            color: #8590a6;
-            font-size: 13px;
-        }
-
-        .sub-comment .comment-con .icon-zan {
-            margin-right: 20px;
-        }
-
-        .sub-comment .comment-con .opt-reply {
-            display: inline-block;
-            margin-left: 20px;
-        }
-
-        .sub-comment .comment-footer {
-            height: 40px;
-            line-height: 40px;
-        }
-
-        .sub-comment .reply-con {
-            padding-left: 20px;
-            margin-bottom: 15px;
-            padding-top: 15px;
-            border-top: 1px solid #ebebeb;
-        }
-
-            .sub-comment .reply-con .reply-value {
-                width: 650px;
-                height: 28px;
-                line-height: 28px;
-                padding: 0px 5px;
-                outline: none;
-            }
-
-            .sub-comment .reply-con .con-btn {
-                width: 46px;
-                height: 30px;
-                line-height: 28px;
-                display: inline-block;
-                background: #0084ff;
-                text-align: center;
-                color: #fff;
-            }
-</style>
 <div class="sub-comment">
 
     <div class="comment-wrap">
@@ -123,13 +24,15 @@
             </div>
         </div>
     </div>
+
+    <input type="hidden" name="answerId" value="@(answerId)" />
+    <input type="hidden" name="getCommentsUrl" value="@(Url.Action("GetComments", "Comment"))" />
+    <input type="hidden" name="saveCommentUrl" value="@(Url.Action("SaveComment", "Comment"))" />
 </div>
-<input type="hidden" name="answerId" value="@(answerId)" />
-<input type="hidden" name="getCommentsUrl" value="@(Url.Action("GetComments", "Comment"))" />
-<input type="hidden" name="saveCommentUrl" value="@(Url.Action("SaveComment", "Comment"))" />
+
 <script type="text/javascript">
     $(function () {
-
+        debugger;
         var _answerId = $('input[name="answerId"]').val();
         getComments();
 
@@ -167,7 +70,7 @@
                 success: function (data) {
 
                     if (data.Code < 0) return;
-
+                    $('.reply-value').val('');
                     getComments();
                 }
             });

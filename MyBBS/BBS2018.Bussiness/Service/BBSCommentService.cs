@@ -74,7 +74,6 @@ namespace BBS2018.Bussiness.Service
 
                 string sqlPage = string.Format(@" limit {0},{1}", (query.PageIndex - 1) * query.PageSize, query.PageSize);
                 List<BBSCommentVM> commentList = dbContext.Sql(sql)
-                                                        .Parameter("answerId", query.AnswerID)
                                                         .QueryMany<BBSCommentVM>((BBSCommentVM vm, IDataReader reader) =>
                                                         {
                                                             vm.ID = reader.GetInt64("ID");

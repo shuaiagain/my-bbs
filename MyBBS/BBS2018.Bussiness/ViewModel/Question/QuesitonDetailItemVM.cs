@@ -64,5 +64,9 @@ namespace BBS2018.Bussiness.ViewModel
         /// 踩的数量
         /// </summary>
         public int? TreadCount { get; set; }
+
+        public int? IsPraised { get; set; }
+
+        public int? IsTreaded { get; set; }
     }
 }
