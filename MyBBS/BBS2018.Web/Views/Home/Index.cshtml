@@ -124,6 +124,7 @@
         </div>
 
         <div class="main-content"></div>
+        <div id="go-top" class="go-top" style="width:40px;height:40px;background:#bbb;cursor:pointer;position:fixed;bottom:10px;right:0px;"></div>
     </div>
 </div>
 
@@ -133,4 +134,42 @@
 <input type="hidden" name="questionDetail" value="@Url.Action("QuestionDetail", "Question")" />
 @section footer{
     <script type="text/javascript" src="~/Content/js/question.js"></script>
+    <script type="text/javascript">
+
+        window.onload = function () {
+
+            var goTop = document.getElementById('go-top');
+            goTop.onclick = function () {
+
+                if (document.documentElement.scrollTop == 0) return;
+                var timerId = setInterval(function () {
+
+                    var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                    var offset = Math.floor(scrollTop / -5);
+
+                    if (scrollTop == 0) {
+                        console.log(timerId);
+                        clearInterval(timerId);
+                    }
+
+                    document.documentElement.scrollTop = document.documentElement.scrollTop + offset;
+
+                }, 30);
+            }
+
+
+            window.onscroll = function () {
+                debugger;
+                var goTop = document.getElementById('go-top');
+                var scrollOffset = document.documentElement.scrollTop;
+
+                if (scroll == 0) {
+                    goTop.style.display = 'none';
+                } else {
+                    goTop.style.display = 'block';
+                }
+            }
+
+        };
+    </script>
 }
