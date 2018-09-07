@@ -28,11 +28,12 @@
     <input type="hidden" name="answerId" value="@(answerId)" />
     <input type="hidden" name="getCommentsUrl" value="@(Url.Action("GetComments", "Comment"))" />
     <input type="hidden" name="saveCommentUrl" value="@(Url.Action("SaveComment", "Comment"))" />
+    <input type="hidden" name="saveCommentPraiseOrTread" value="@(Url.Action("SavePraiseOrTread", "PraiseOrTread"))" />
 </div>
 
 <script type="text/javascript">
     $(function () {
-        debugger;
+
         var _answerId = $('input[name="answerId"]').val();
         getComments();
 
@@ -55,7 +56,6 @@
 
         //保存评论
         function saveComment(bindTableID, bindTableName, content) {
-
 
             var saveCommentUrl = $('input[name="saveCommentUrl"]').val()
             $.ajax({
@@ -89,8 +89,9 @@
 
                     if (data.Code < 0) return;
                     var result = data.Data;
-                    var tempHtml = renderHtml(result.Data);
-                    $('.comment-con').html(tempHtml);
+                    $('.comment-con').html(renderHtml(result.Data));
+
+                    bindEvent();
                 }
             });
         }
@@ -99,7 +100,10 @@
         function renderHtml(data) {
 
             var template = '';
+            var voteStatus = 0;
             for (var i = 0; i < data.length; i++) {
+
+                voteStatus = data[i].VoteData && data[i].VoteData.VoteStatus ? data[i].VoteData.VoteStatus : 0;
                 template += '<div class="con-item" data-commentid="' + data[i].ID + '">' +
                                 '<div class="item-user clearfix">' +
                                     '<div class="user-info floatL">' +
@@ -112,8 +116,10 @@
                                 '</div>' +
                                 '<div class="item-content">' + data[i].Content + '</div>' +
                                 '<div class="item-opt">' +
-                                   '<a class="iconfont icon-zan">赞</a>' +
-                                   '<a class="iconfont icon-cai">踩</a>' +
+                                   '<a class="iconfont icon-zan ' + (voteStatus == 1 ? "zancai-active" : "") + '">赞</a>' +
+                                   '<a class="icon-zan-count">' + (data[i].VoteData ? data[i].VoteData.PraiseCount : '') + '</a>' +
+                                   '<a class="iconfont icon-cai ' + (voteStatus == 2 ? "zancai-active" : "") + '">踩</a>' +
+                                   '<a class="icon-cai-count">' + (data[i].VoteData ? data[i].VoteData.TreadCount : '') + '</a>' +
                                    '<div class="opt-reply">' +
                                         '<a class="iconfont icon-reply">回复</a>' +
                                    '</div>' +
@@ -122,6 +128,48 @@
             }
 
             return template;
+        }
+
+        //绑定事件
+        function bindEvent() {
+
+            var isVoteBack = true;
+            //赞、踩
+            $('.icon-zan,.icon-cai').on('click', function (e) {
+
+                if (!isVoteBack || $(this).hasClass('zancai-active')) return;
+                isVoteBack = false;
+
+                var thisDom = this;
+                var type = $(this).hasClass('icon-zan') ? 1 : 2;
+                var saveVoteUrl = $('input[name="saveCommentPraiseOrTread"]').val();
+
+                $.ajax({
+                    type: 'post',
+                    url: saveVoteUrl,
+                    contentType: 'application/json;charset=utf-8',
+                    data: JSON.stringify({
+                        'BindTableName': 'bbscomment',
+                        'BindTableID': $(this).parents('.con-item').data('commentid'),
+                        'PraiseOrTread': type
+                    }),
+                    success: function (data) {
+                        isVoteBack = true;
+
+                        if (data.Code < 0) {
+
+                            alert(data.Msg);
+                            return;
+                        }
+
+                        $(thisDom).parents('.item-opt').find('.icon-zan,.icon-cai').removeClass('zancai-active');
+                        $(thisDom).addClass('zancai-active');
+
+                        $(thisDom).parents('.item-opt').find('.icon-zan-count').text(data.Data.PraiseCount);
+                        $(thisDom).parents('.item-opt').find('.icon-cai-count').text(data.Data.TreadCount);
+                    }
+                });
+            });
         }
 
     });

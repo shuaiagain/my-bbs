@@ -5,12 +5,14 @@ using System.Text;
 
 namespace BBS2018.Bussiness.ViewModel
 {
-    public class PraiseTreadItemVM
+    public class CommentPraOrTreVM
     {
+        public long? CommentID { get; set; }
+
         public int? PraiseCount { get; set; }
 
         public int? TreadCount { get; set; }
 
-        public BBSPraiseTreadVM Item { get; set; }
+        public int? VoteStatus { get; set; }
     }
 }

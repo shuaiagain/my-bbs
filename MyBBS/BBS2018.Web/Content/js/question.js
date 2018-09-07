@@ -130,7 +130,7 @@
                     $(thisDom).parents('.vote ').find('.vote-praise,.vote-tread').removeClass('updown-active');
                     $(thisDom).addClass('updown-active');
 
-                    $(thisDom).parents('.vote').find('.praise-num').text(data.Data.Count);
+                    $(thisDom).parents('.vote').find('.praise-num').text(data.Data.PraiseCount);
                 }
             });
 

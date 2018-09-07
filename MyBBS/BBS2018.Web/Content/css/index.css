@@ -222,18 +222,22 @@ a {
         margin: 10px 0px;
     }
 
-    .sub-comment .comment-con .icon-zan, .icon-cai, .icon-reply {
+    .sub-comment .comment-con .icon-zan, .icon-cai, .icon-reply, .icon-zan-count, .icon-cai-count {
         color: #8590a6;
         font-size: 13px;
     }
 
-    .sub-comment .comment-con .icon-zan {
+    .sub-comment .comment-con .icon-zan, .icon-cai {
+        margin-right: 5px;
+    }
+
+    .sub-comment .comment-con .icon-zan-count, .icon-cai-count {
         margin-right: 20px;
+        cursor:default;
     }
 
     .sub-comment .comment-con .opt-reply {
         display: inline-block;
-        margin-left: 20px;
     }
 
     .sub-comment .comment-footer {

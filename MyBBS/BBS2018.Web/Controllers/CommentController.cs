@@ -41,6 +41,7 @@ namespace BBS2018.Web.Controllers
             if (!query.PageIndex.HasValue) query.PageIndex = 1;
             if (!query.PageSize.HasValue) query.PageSize = 10;
 
+            query.UserID = this.UserData.UserID;
             PageVM<BBSCommentVM> pgVM = new BBSCommentService().GetComments(query);
 
             if (pgVM == null || pgVM.Data == null || pgVM.Data.Count == 0) return Json(new

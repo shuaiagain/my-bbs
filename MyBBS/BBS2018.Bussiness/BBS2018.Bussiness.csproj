@@ -65,9 +65,11 @@
     <Compile Include="Utils\ConnectionUtil.cs" />
     <Compile Include="Utils\EDcryptUtil.cs" />
     <Compile Include="ViewModel\Answer\BBSAnswerVM.cs" />
+    <Compile Include="ViewModel\BBSPraiseTread\PraiseTreadCountVM.cs" />
     <Compile Include="ViewModel\Book\BBSBookVM.cs" />
     <Compile Include="ViewModel\Comment\BBSCommentVM.cs" />
     <Compile Include="ViewModel\BBSPraiseTread\BBSPraiseTreadVM.cs" />
+    <Compile Include="ViewModel\Comment\CommentPraOrTreVM.cs" />
     <Compile Include="ViewModel\Common\PageVM.cs" />
     <Compile Include="ViewModel\Question\BBSQuestionVM.cs" />
     <Compile Include="ViewModel\Question\QuesitonDetailItemVM.cs" />

@@ -18,7 +18,7 @@ namespace BBS2018.Bussiness.ViewModel
         public int? UserID { get; set; }
 
         /// <summary>
-        /// 赞/踩（）
+        /// 赞/踩（1:赞，2：踩）
         /// </summary>
         public int? PraiseOrTread { get; set; }
 

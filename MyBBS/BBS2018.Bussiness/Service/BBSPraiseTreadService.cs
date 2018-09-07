@@ -38,16 +38,27 @@ namespace BBS2018.Bussiness.Service
                                                   .Column("InputTime", ptVM.InputTime)
                                                   .ExecuteReturnLastId<long>();
 
-                int count = dbContext.Sql(@" select 1 from bbspraisetread pt where pt.BindTableName = @bindTaleName and pt.BindTableID = @bindTableID  and pt.PraiseOrTread = 1 ")
-                                     .Parameter("bindTaleName", ptVM.BindTableName)
+                PraiseTreadCountVM ptCountVM = dbContext.Sql(@" 
+                                             select 
+	                                            SUM(case when pt.PraiseOrTread = 1 then 1 else 0 end)as PraiseCount,
+	                                            SUM(case when pt.PraiseOrTread = 2 then 1 else 0 end)as TreadCount
+                                             from bbspraisetread pt 
+                                             where pt.BindTableName = @bindTableName
+                                             and pt.BindTableID = @bindTableID ")
+                                     .Parameter("bindTableName", ptVM.BindTableName)
                                      .Parameter("bindTableID", ptVM.BindTableID)
-                                     .QueryMany<int>().Count;
+                                     .QuerySingle<PraiseTreadCountVM>((PraiseTreadCountVM vm, IDataReader re) =>
+                                     {
+                                         vm.PraiseCount = Convert.ToInt32(re["PraiseCount"]);
+                                         vm.TreadCount = Convert.ToInt32(re["TreadCount"]);
+                                     });
 
                 dbContext.Commit();
 
                 PraiseTreadItemVM itemVM = new PraiseTreadItemVM();
                 itemVM.Item = ptVM;
-                itemVM.Count = count;
+                itemVM.PraiseCount = ptCountVM.PraiseCount;
+                itemVM.TreadCount = ptCountVM.TreadCount;
 
                 return itemVM;
             }

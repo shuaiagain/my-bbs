@@ -52,6 +52,9 @@ namespace BBS2018.Bussiness.ViewModel
                 return this.InputTime.Value.ToString("yyyy-MM-dd HH:mm:ss");
             }
         }
+
+        public PraiseTreadCountVM VoteData { get; set; }
+
         #endregion
     }
 }

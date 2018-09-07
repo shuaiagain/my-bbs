@@ -87,6 +87,45 @@ namespace BBS2018.Bussiness.Service
 
                 if (commentList == null || commentList.Count == 0) return null;
 
+                string commentIds = "";
+                commentList.ForEach((item) =>
+                {
+                    commentIds += item.ID + ",";
+                });
+                commentIds = commentIds.Trim(',');
+
+                string sqlComment = string.Format(@" 
+                                        select 
+	                                        BindTableID as CommentID,
+	                                        sum(case when p.PraiseOrTread = 1 then 1 else 0 end )as PraiseCount,
+	                                        sum(case when p.PraiseOrTread = 2 then 1 else 0 end )as TreadCount,
+                                            sum(case when p.UserID = 10 and p.PraiseOrTread =1 then 1 when p.UserID = 10 and p.PraiseOrTread = 2 then 2 else 0 end )as VoteStatus
+                                        from bbspraisetread p 
+                                        where p.BindTableName = 'bbscomment'
+                                        and p.BindTableID in ({0})
+                                        GROUP BY BindTableID ", commentIds, query.UserID);
+
+                List<PraiseTreadCountVM> voteList = dbContext.Sql(sqlComment).QueryMany<PraiseTreadCountVM>((PraiseTreadCountVM vm, IDataReader re) =>
+                {
+                    vm.ID = re.GetInt64("CommentID");
+                    vm.PraiseCount = Convert.ToInt32(re["PraiseCount"]);
+                    vm.TreadCount = Convert.ToInt32(re["TreadCount"]);
+                    vm.VoteStatus = Convert.ToInt32(re["VoteStatus"]);
+                });
+
+                //获取每个评论的赞/踩数量
+                if (voteList != null && voteList.Count > 0)
+                {
+                    commentList.ForEach((item) =>
+                    {
+                        PraiseTreadCountVM temp = voteList.Find(v => v.ID == item.ID);
+                        if (temp != null)
+                        {
+                            item.VoteData = temp;
+                        }
+                    });
+                }
+
                 //总条数
                 int totalCount = dbContext.Sql(sql).QueryMany<int>().Count;
                 //总页数
