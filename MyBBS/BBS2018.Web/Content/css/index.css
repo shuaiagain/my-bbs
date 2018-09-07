@@ -231,9 +231,13 @@ a {
         margin-right: 5px;
     }
 
+        .sub-comment .comment-con .icon-zan:hover, .icon-cai:hover, .icon-reply:hover {
+            color: #0084ff;
+        }
+
     .sub-comment .comment-con .icon-zan-count, .icon-cai-count {
         margin-right: 20px;
-        cursor:default;
+        cursor: default;
     }
 
     .sub-comment .comment-con .opt-reply {
