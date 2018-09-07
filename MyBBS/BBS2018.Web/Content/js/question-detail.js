@@ -174,12 +174,15 @@
 
         //点击评论
         $('.content-comment').on('click', function (e) {
-           
+
             var thisDom = this;
             $(thisDom).parents('.content-item').siblings().each(function (i, val) {
 
-                if ($(val).find('.sub-comment').length == 1)
+                if ($(val).find('.sub-comment').length == 1) {
                     $(val).find('.sub-comment').remove();
+                    $(val).find('.comment-num').show();
+                    $(val).find('.comment-text').text('条评论');
+                }
             });
 
             if ($(thisDom).parents('.content-item').find('.sub-comment').length == 1) {
@@ -189,7 +192,7 @@
                 $(thisDom).find('.comment-text').text('条评论');
                 return;
             }
-         
+
             var commentListUrl = $('input[name="commentListUrl"]').val() + '?answerId=' + $(thisDom).parents('.content-item').data('answerid');
             $.get(commentListUrl, function (data) {
 
