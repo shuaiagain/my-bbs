@@ -143,7 +143,7 @@
         if (!data) {
 
             return '<div class="qu-nodata">' +
-                        '<span>未找到你提的问题囧</span>' +
+                        '<span>你的问题比较特别囧，赶紧去提问吧:)</span>' +
                    '</div>';
         }
 
@@ -198,7 +198,7 @@
                                 '</div>' +
                                 '<div class="content-comment floatL">' +
                                     '<div class="comment-wrap">' +
-                                       '<a class="iconfont icon-comment"></a>' +
+                                       //'<a class="iconfont icon-comment"></a>' +
                                        '<a class="comment-num">0</a>' +
                                        '<span class="comment-text">条评论</span>' +
                                     '</div>' +
