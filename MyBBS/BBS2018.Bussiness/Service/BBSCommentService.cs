@@ -99,7 +99,7 @@ namespace BBS2018.Bussiness.Service
 	                                        BindTableID as CommentID,
 	                                        sum(case when p.PraiseOrTread = 1 then 1 else 0 end )as PraiseCount,
 	                                        sum(case when p.PraiseOrTread = 2 then 1 else 0 end )as TreadCount,
-                                            sum(case when p.UserID = 10 and p.PraiseOrTread =1 then 1 when p.UserID = 10 and p.PraiseOrTread = 2 then 2 else 0 end )as VoteStatus
+                                            sum(case when p.UserID = {1} and p.PraiseOrTread =1 then 1 when p.UserID = {1} and p.PraiseOrTread = 2 then 2 else 0 end )as VoteStatus
                                         from bbspraisetread p 
                                         where p.BindTableName = 'bbscomment'
                                         and p.BindTableID in ({0})
