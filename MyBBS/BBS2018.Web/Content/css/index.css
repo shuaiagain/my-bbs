@@ -209,6 +209,10 @@ a {
         vertical-align: middle;
     }
 
+    .sub-comment .comment-con .info-name {
+        vertical-align: middle;
+    }
+
     .sub-comment .comment-con .user-info, .user-date {
         height: 40px;
         line-height: 40px;
@@ -242,6 +246,10 @@ a {
 
     .sub-comment .comment-con .opt-reply {
         display: inline-block;
+    }
+
+    .sub-comment .comment-con .opt-com {
+        margin-top: 5px;
     }
 
     .sub-comment .comment-footer {

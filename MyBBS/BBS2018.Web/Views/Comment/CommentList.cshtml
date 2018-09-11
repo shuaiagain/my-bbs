@@ -8,7 +8,7 @@
     <div class="comment-wrap">
         <div class="comment-head clearfix">
             <div class="head-left floatL">
-                <span class="comment-total">0</span><span class="total-text">条评论</span>
+                <span class="comment-total"></span><span class="total-text">条评论</span>
             </div>
             <div class="head-right floatR"><a>时间排序</a></div>
         </div>
@@ -89,6 +89,8 @@
 
                     if (data.Code < 0) return;
                     var result = data.Data;
+
+                    $('.comment-total').text(data.Data.TotalCount);
                     $('.comment-con').html(renderHtml(result.Data));
 
                     bindEvent();
@@ -104,11 +106,11 @@
             for (var i = 0; i < data.length; i++) {
 
                 voteStatus = data[i].VoteData && data[i].VoteData.VoteStatus ? data[i].VoteData.VoteStatus : 0;
-                template += '<div class="con-item" data-commentid="' + data[i].ID + '">' +
+                template += '<div class="con-item" data-commentid="' + data[i].ID + '" data-userid="' + data[i].UserID + '">' +
                                 '<div class="item-user clearfix">' +
                                     '<div class="user-info floatL">' +
                                         '<a class="info-logo"><img class="img24 logo-show" src="/Content/images/Login/bg-login.png" /></a>' +
-                                        '<span>' + data[i].UserName + '</span>' +
+                                        '<span class="info-name">' + data[i].UserName + '</span>' +
                                     '</div>' +
                                     '<div class="user-date floatR">' +
                                         '<span class="date-show">' + data[i].InputTimeStr + '</span>' +
@@ -169,6 +171,53 @@
                         $(thisDom).parents('.item-opt').find('.icon-cai-count').text(data.Data.TreadCount);
                     }
                 });
+            });
+
+            //回复评论
+            $('.icon-reply').on('click', function (e) {
+
+                var thisDom = this;
+
+                if ($(thisDom).parents().find('.opt-com').length == 1) return;
+
+                var temp = '<div class="opt-com">' +
+                                '<input value="" placeholder="回复' + $(thisDom).parents('.con-item').find('.info-name').text() + '" class="reply-content reply-input" name="reply-content" autocomplete="off" />' +
+                                '<a class="com-submit reply-btn">回复</a>' +
+                                '<a class="com-cancel reply-btn reply-btn-cancel">取消</a>' +
+                                '<span class="warning con-tips"></span>' +
+                            '</div>';
+
+                $(thisDom).parents('.item-opt').append(temp);
+
+                //提交回复
+                $('.com-submit').on('click', function (e) {
+
+                    var con = $(this).parents('.opt-com').find('.reply-content').val();
+                    if ($.trim(con) == '') {
+
+                        $(this).parents('.opt-com').find('.con-tips').text('请输入评论内容');
+                        return;
+                    }
+
+                    saveComment($(thisDom).parents('.con-item').data('commentid'), 'bbscomment', con);
+                    e.stopPropagation();
+                    e.preventDefault();
+                });
+
+                //取消
+                $('.com-cancel').on('click', function (e) {
+
+                    $(this).parents('.opt-com').remove();
+
+                    e.stopPropagation();
+                    e.preventDefault();
+                });
+
+                //隐藏提示
+                $('.reply-content').on('focus', function (e) {
+                    $(this).parents('.opt-com').find('.con-tips').text('');
+                });
+
             });
         }
 

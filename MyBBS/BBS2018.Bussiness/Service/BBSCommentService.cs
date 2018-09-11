@@ -32,16 +32,19 @@ namespace BBS2018.Bussiness.Service
 	                                DECLARE Finish INT DEFAULT 0;
 	                                DECLARE CommentID BIGINT DEFAULT 0;
 
-	                                DECLARE cur_comment CURSOR FOR  SELECT ID FROM bbscomment WHERE BindTableName = 'bbscomment' AND BindTableID = answerId ;
+	                                DECLARE cur_comment CURSOR FOR  SELECT ID FROM bbscomment WHERE BindTableName = 'bbsanswer' AND BindTableID = answerId ;
 	                                DECLARE CONTINUE HANDLER FOR NOT FOUND SET Finish = 1;
 	
 	                                DROP TABLE IF EXISTS TempComment;
 	                                CREATE TEMPORARY TABLE TempComment SELECT ID FROM bbscomment WHERE BindTableName = 'bbsanswer' AND BindTableID = answerId;
 	
 	                                OPEN cur_comment;
-	                                FETCH cur_comment INTO CommentID ;
-	
-	                                CALL Pro_RecurseGetReply(CommentID);
+			                                REPEAT
+				                                FETCH cur_comment INTO CommentID ;
+			
+					                                CALL Pro_RecurseGetReply(CommentID);
+		
+				                             UNTIL Finish=1 END REPEAT;
 	                                CLOSE cur_comment;
 	
 	                              	SELECT  * FROM bbscomment b where b.ID in 
@@ -126,6 +129,8 @@ namespace BBS2018.Bussiness.Service
                     });
                 }
 
+                List<BBSCommentVM> resultList = commentList.Where(c => c.BindTableName == "bbsanswer").ToList();
+
                 //总条数
                 int totalCount = dbContext.Sql(sql).QueryMany<int>().Count;
                 //总页数
@@ -141,6 +146,19 @@ namespace BBS2018.Bussiness.Service
                 return pgVM;
             }
         }
+        #endregion
+
+        #region 递归获取评论
+        public List<BBSCommentVM> MakeCommentOrder(List<BBSCommentVM> source, List<BBSCommentVM> result, long parentId)
+        {
+            if (result == null) result = new List<BBSCommentVM>();
+
+            BBSCommentVM subComment = source.Where(s => s.BindTableID == parentId && s.BindTableName == "bbscomment").FirstOrDefault();
+            //if(subComment==null)
+            //else
+
+            return null;
+        } 
         #endregion
 
         #region SaveComment
@@ -164,5 +182,6 @@ namespace BBS2018.Bussiness.Service
             }
         }
         #endregion
+
     }
 }

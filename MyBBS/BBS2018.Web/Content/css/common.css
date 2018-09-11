@@ -15,7 +15,7 @@
     clear: left;
 }
 
-.clear {
+.clearfix {
     zoom: 1;
 }
 
@@ -113,3 +113,30 @@ textL {
         cursor: pointer;
     }
 /*点赞、踩-end*/
+
+/*评论回复框和按钮-start*/
+.reply-input {
+    width: 630px;
+    height: 28px;
+    line-height: 28px;
+    padding: 0px 5px;
+    outline: none;
+    margin-right: 5px;
+}
+
+.reply-btn {
+    width: 46px;
+    height: 30px;
+    line-height: 28px;
+    display: inline-block;
+    background: #0084ff;
+    text-align: center;
+    color: #fff;
+    margin-right: 5px;
+}
+
+.reply-btn-cancel {
+    background: #a3a8ad;
+}
+
+/*评论回复框和按钮-end*/
