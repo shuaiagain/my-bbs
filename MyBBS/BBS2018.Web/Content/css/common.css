@@ -140,3 +140,13 @@ textL {
 }
 
 /*评论回复框和按钮-end*/
+
+.submit-btn {
+    width: 200px;
+    height: 30px;
+    line-height: 28px;
+    display: inline-block;
+    background: #0084ff;
+    text-align: center;
+    color: #fff;
+}

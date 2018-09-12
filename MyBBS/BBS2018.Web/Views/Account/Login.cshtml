@@ -39,8 +39,20 @@
                 outline: none;
             }
 
+        .login-wrapper .user-forget {
+            text-align:left;
+        }
+
+            .login-wrapper .user-forget .forget-pwd {
+                font-size: 12px;
+                color: #0084ff;
+                display: inline-block;
+                margin-left: 90px;
+                margin-top: 20px;
+            }
+
         .login-wrapper .user-submit {
-            margin-top: 40px;
+            margin-top: 20px;
         }
 
         .login-wrapper .login-btn {
@@ -77,6 +89,10 @@
 
             <div class="user-pwd">
                 <input type="password" class="password" name="password" value="" autocomplete="off" placeholder="密码" />
+            </div>
+
+            <div class="user-forget">
+                <a class="forget-pwd" target="_blank" href="@(Url.Action("ForgetPwd","Account"))">忘记密码</a>
             </div>
 
             <div class="user-submit">

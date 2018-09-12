@@ -1,0 +1,157 @@
+﻿@{
+    ViewBag.Title = "ForgetPwd";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<style type="text/css">
+    .forget {
+        width: 80%;
+        margin: 0 auto;
+        text-align: center;
+        height: 100%;
+        background: #fff;
+        padding-top: 100px;
+    }
+
+        .forget .forget-title {
+            display: inline-block;
+        }
+
+        .forget .con-email, .con-verify {
+            margin-top: 20px;
+        }
+
+        .forget .verify-img {
+            vertical-align: middle;
+            cursor: pointer;
+            width: 40px;
+            height: 30px;
+        }
+
+        .forget .email-val, .verify-code {
+            height: 30px;
+            line-height: 30px;
+            width: 200px;
+            outline: none;
+            padding: 0px 5px;
+        }
+
+        .forget .verify-code {
+            width: 155px;
+        }
+
+        .forget .forget-footer, .forget-tips {
+            margin-top: 20px;
+        }
+
+        .forget .forget-tips .tips-text {
+            margin-left: -100px;
+        }
+
+        .forget .sendemail {
+            display: none;
+            font-weight: 700;
+        }
+
+            .forget .sendemail .goto-supplier {
+                display: inline-block;
+                width: 124px;
+                height: 36px;
+                background: #ed384e;
+                line-height: 36px;
+                color: #fff;
+                margin-top:20px;
+            }
+</style>
+<div class="forget">
+
+    <div class="forget-show">
+        <div class="forget-title">
+            <span class="title-text">忘记密码</span>
+        </div>
+        <div class="forget-con">
+            <div class="con-email">
+                <input class="email-val" type="text" value="" placeholder="请输入邮箱" name="email-val" autocomplete="off" />
+            </div>
+            <div class="con-verify">
+                <input class="verify-code" type="text" value="" placeholder="请输入验证码" name="verify-code" autocomplete="off" />
+                <img class="verify-img" src="@(Url.Action("GetVerifyCode", "Account"))" alt="验证码" />
+            </div>
+        </div>
+        <div class="forget-footer">
+            <div class="footer-wrap">
+                <a class="forget-submit submit-btn">提交</a>
+            </div>
+        </div>
+        <div class="forget-tips">
+            <span class="warning tips-text" data-name=""></span>
+        </div>
+    </div>
+
+    <div class="sendemail">
+        <div class="send-icon">
+            <span></span>
+        </div>
+        <div class="send-word">
+            <span>密码重设连接邮箱发送成功</span>
+        </div>
+        <div class="send-tip">
+            <span class="tip-show">已经发送至</span><span class="tip-email"></span>
+        </div>
+        <div class="send-go">
+            <a class="goto-supplier" href="" target="_blank">去邮箱</a>
+        </div>
+    </div>
+</div>
+<input type="hidden" name="verifyCodeUrl" value="@(Url.Action("GetVerifyCode", "Account"))" />
+<input type="hidden" name="verifySubmitUrl" value="@(Url.Action("SendEmail", "Account"))" />
+
+<script type="text/javascript">
+    $(function () {
+
+        //刷新验证码
+        $('.verify-img').on('click', function (e) {
+
+            $(this).prop('src', $('input[name="verifyCodeUrl"]').val() + '?t=' + new Date().getTime());
+        });
+
+        //提交
+        $('.forget-submit').on('click', function (e) {
+
+            var submitUrl = $('input[name="verifySubmitUrl"]').val();
+            var email = $.trim($('.email-val').val());
+            var verifyCode = $.trim($('.verify-code').val());
+            var tip = $('.tips-text');
+
+            if (!email) {
+                $('.tips-text').text('请输入邮箱!');
+                return false;
+            }
+
+            if (!verifyCode) {
+                tip.text('请输入验证码!');
+                return false;
+            }
+
+            tip.text('');
+
+            $.post(submitUrl, { 'email': email, 'verifyCode': verifyCode }, function (data) {
+
+                if (data.Code < 0) {
+                    tip.text(data.Msg);
+                    return false;
+                }
+
+                $('.forget-show').hide();
+                $('.tip-email').text(data.Data.Email);
+                $('.sendemail').show();
+                $('.goto-supplier').attr('href', data.Data.EmailSupplier);
+            })
+        });
+
+        //提示
+        $('.email-val,.verify-code').on('focus', function (e) {
+
+        });
+    });
+</script>
