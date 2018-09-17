@@ -149,6 +149,7 @@
     <Content Include="Content\plugins\layer\theme\default\loading-1.gif" />
     <Content Include="Content\plugins\layer\theme\default\loading-2.gif" />
     <Content Include="Global.asax" />
+    <None Include="NoteBook\note-1.md" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
