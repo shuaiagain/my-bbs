@@ -273,6 +273,7 @@ namespace BBS2018.Web.Controllers
         }
         #endregion
 
+        #region SendEmail
         public bool SendEmail(string title, string email, string content)
         {
             //使用163代理邮箱服务器（也可是使用qq的代理邮箱服务器，但需要与具体邮箱对相应）
@@ -298,9 +299,10 @@ namespace BBS2018.Web.Controllers
             //int mailPort = 465;
 
             //创建发送邮箱的对象
-            EmailUtil myEmail = new EmailUtil(senderServerIp, toMailAddress, fromMailAddress, subjectInfo, bodyInfo, mailUsername, mailPassword, mailPort,false,false);
+            EmailUtil myEmail = new EmailUtil(senderServerIp, toMailAddress, fromMailAddress, subjectInfo, bodyInfo, mailUsername, mailPassword, mailPort, false, false);
 
             return myEmail.SendEmail();
-        }
+        } 
+        #endregion
     }
 }
