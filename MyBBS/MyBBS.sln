@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BBS2018.Web", "BBS2018.Web\BBS2018.Web.csproj", "{4FD47D68-0B24-425C-BC74-3F832EBDC531}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BBS2018.Bussiness", "BBS2018.Bussiness\BBS2018.Bussiness.csproj", "{D67EFE9B-4DC3-459E-93FA-1C3D0CF5EE33}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseTest", "BaseTest\BaseTest.csproj", "{1C7A9FB6-DB8A-46DA-98C1-2311182D8EF6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{D67EFE9B-4DC3-459E-93FA-1C3D0CF5EE33}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D67EFE9B-4DC3-459E-93FA-1C3D0CF5EE33}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D67EFE9B-4DC3-459E-93FA-1C3D0CF5EE33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C7A9FB6-DB8A-46DA-98C1-2311182D8EF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C7A9FB6-DB8A-46DA-98C1-2311182D8EF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C7A9FB6-DB8A-46DA-98C1-2311182D8EF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C7A9FB6-DB8A-46DA-98C1-2311182D8EF6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
